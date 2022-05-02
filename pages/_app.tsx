@@ -1,8 +1,18 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type {AppProps} from "next/app";
+import styled from "styled-components";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const AppEl = styled.div`
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+`;
+
+function MyApp({Component, pageProps}: AppProps) {
+  return (
+    <AppEl>
+      <Component {...pageProps} />
+    </AppEl>
+  );
 }
 
-export default MyApp
+export default MyApp;
