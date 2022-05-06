@@ -17,6 +17,16 @@ export const Colors = {
       TextFillColor: "transparent",
       BackgroundClip: "text",
     },
+    DefaultExtended: {
+      Color: "linear-gradient(102.47deg, #176FEB 0%, #FF80FF 300%)",
+      TextFillColor: "transparent",
+      BackgroundClip: "text",
+    },
+    DefaultSemiExtended: {
+      Color: "linear-gradient(102.47deg, #176FEB 0%, #FF80FF 180%)",
+      TextFillColor: "transparent",
+      BackgroundClip: "text",
+    },
     Hover: {
       Color: "linear-gradient(102.47deg, #1667D9 0%, #F279F2 100%)",
       TextFillColor: "transparent",

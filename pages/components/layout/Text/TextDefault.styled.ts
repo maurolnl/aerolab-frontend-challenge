@@ -23,6 +23,10 @@ export const TextDefault = styled.span<Props>`
         return `color: ${Colors.Neutral[900]};`;
       case "gradient":
         return Colors.Bundler(Colors.Brand.Default);
+      case "gradientExtended":
+        return Colors.Bundler(Colors.Brand.DefaultExtended);
+      case "gradientSemiExtended":
+        return Colors.Bundler(Colors.Brand.DefaultSemiExtended);
       default:
         return `color: ${Colors.Neutral[600]};`;
     }
