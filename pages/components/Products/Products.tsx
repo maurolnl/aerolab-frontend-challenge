@@ -9,8 +9,6 @@ const Grid = styled.div`
 
   row-gap: 80px;
   column-gap: 24px;
-
-  margin-top: 64px;
 `;
 
 const Products = () => {

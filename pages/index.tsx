@@ -3,7 +3,9 @@ import Head from "next/head";
 
 import {GlobalStyle} from "../styles/Global";
 
+import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
+import {Stack} from "./components/layout/Stack.styled";
 import Navbar from "./components/Navbar/Navbar";
 import ProductSection from "./components/Products/ProductSection";
 import Walkthrough from "./components/Walkthrough/Walkthrough";
@@ -26,8 +28,11 @@ const Home: NextPage = () => {
       </Head>
       <Navbar />
       <Hero />
-      <Walkthrough />
-      <ProductSection />
+      <Stack direction="column" gap="160px">
+        <Walkthrough />
+        <ProductSection />
+        <Footer />
+      </Stack>
     </>
   );
 };

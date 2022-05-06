@@ -8,11 +8,6 @@ import Filters from "./Filters/Filters";
 import PageDescription from "./PageDescription";
 import Products from "./Products";
 
-const Wrapper = styled.section`
-  margin-top: 160px;
-  margin-bottom: 160px;
-`;
-
 const HeaderWrapper = styled.header`
   display: flex;
   flex-direction: column;
@@ -32,25 +27,23 @@ const SectionWrapper = styled.div`
 
 const ProductSection = () => {
   return (
-    <Wrapper>
-      <Container>
-        <SectionWrapper>
-          <HeaderWrapper>
-            <div>
-              <TitleL2Default display="inline" variant="gradientExtended">
-                tech
-              </TitleL2Default>
-              <TitleL2Default display="inline" variant="solid">
-                products
-              </TitleL2Default>
-            </div>
-            <Filters />
-          </HeaderWrapper>
-          <Products />
-          <PageDescription />
-        </SectionWrapper>
-      </Container>
-    </Wrapper>
+    <Container>
+      <SectionWrapper>
+        <HeaderWrapper>
+          <div>
+            <TitleL2Default display="inline" variant="gradientExtended">
+              tech
+            </TitleL2Default>
+            <TitleL2Default display="inline" variant="solid">
+              products
+            </TitleL2Default>
+          </div>
+          <Filters />
+        </HeaderWrapper>
+        <Products />
+        <PageDescription />
+      </SectionWrapper>
+    </Container>
   );
 };
 
