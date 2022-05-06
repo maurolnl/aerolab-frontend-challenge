@@ -1,7 +1,5 @@
 import {createGlobalStyle} from "styled-components";
 
-//src: url('/fonts/Montserrat-VariableFont_wght.woff2') format('woff2');
-
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Montserrat';
