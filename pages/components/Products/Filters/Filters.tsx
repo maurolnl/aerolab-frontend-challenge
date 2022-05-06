@@ -15,8 +15,6 @@ const Wrapper = styled.div`
   align-items: center;
 
   width: 100%;
-
-  margin-top: calc(42px + 38px);
 `;
 
 const CategoryAndSortWrapper = styled.div`
