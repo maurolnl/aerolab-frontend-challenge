@@ -5,11 +5,11 @@ import {Colors, Shadows} from "../../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
 import {ButtonClose} from "../layout/Button/ButtonClose.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
-import {TextDefault} from "../layout/TextDefault.styled";
+import {TextDefault} from "../layout/Text/TextDefault.styled";
 import aeropay_3 from "../../../assets/icons/aeropay-3.svg";
 import close_icon from "../../../assets/icons/cross-default.svg";
 import close_icon_active from "../../../assets/icons/cross-active.svg";
-import Amounts from "../Amounts";
+import ToggleGroup from "../layout/ToggleGroup";
 
 import AeroCard from "./AeroCard";
 
@@ -57,15 +57,16 @@ interface Props {
 const AeroPay: React.FC<Props> = ({onClose}) => {
   const [isActive, setActive] = useState<boolean>(false);
 
+  const AMOUNTS = [1000, 5000, 7500];
+
   return (
     <Wrapper>
       <Header>
         <TextDefault color={"900"}>Add Balance</TextDefault>
         <ButtonClose onClick={onClose}>
           <Icon
-            height={"24px"}
             src={isActive ? close_icon_active.src : close_icon.src}
-            width={"24px"}
+            variant="Mobile"
             onMouseEnter={() => setActive(true)}
             onMouseLeave={() => setActive(false)}
           />
@@ -74,9 +75,9 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
       <Content>
         <AeroCard />
         <AmountAndButtonWrapper>
-          <Amounts />
-          <ButtonCTA h="51px" mt="0px" w="100%">
-            <Icon height={"24px"} src={aeropay_3.src} width={"24px"} />
+          <ToggleGroup h={"35px"} labels={AMOUNTS} selectButtonIndex={1} w={"100%"} />
+          <ButtonCTA h="51px" mt="0px" textVariant="AllCaps" w="100%">
+            <Icon src={aeropay_3.src} variant="Mobile" />
             <TextDefault color={"100"} ml={"8px"}>
               Add Points
             </TextDefault>

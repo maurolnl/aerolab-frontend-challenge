@@ -8,10 +8,10 @@ interface Props {
   w: string;
   h: string;
   variant?: string;
+  textVariant?: string;
 }
 
 export const ButtonCTA = styled.button<Props>`
-  ${TextStyles.Bundler(TextStyles.Texts.L1.AllCaps)}
   color: ${Colors.Neutral[0]};
   background: ${Colors.Brand.Default.Color};
   width: ${(p) => (p.w ? p.w : "318px")};
@@ -23,11 +23,21 @@ export const ButtonCTA = styled.button<Props>`
   margin-top: ${(p) => (p.mt ? p.mt : "")};
   cursor: pointer;
   border-radius: 24px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0px;
   box-shadow: ${Shadows.Elevation1.Default};
 
   &:hover {
     background: ${Colors.Brand.Hover.Color};
   }
+
+  ${(p) => {
+    switch (p.textVariant) {
+      case "AllCaps":
+        return TextStyles.Bundler(TextStyles.Texts.L1.AllCapsUnspaced);
+
+      default:
+        return TextStyles.Bundler(TextStyles.Texts.L1.Default);
+    }
+  }}
 `;

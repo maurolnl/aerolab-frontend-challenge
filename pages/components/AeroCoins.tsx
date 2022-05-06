@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import SVG from "react-inlinesvg";
 
 import aeropay_icon from "../../assets/icons/aeropay-1.svg";
 import arrow from "../../assets/icons/chevron-default.svg";
@@ -58,7 +57,7 @@ const AeroCoins = () => {
     <PaymentBox>
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
-          <Icon src={aeropay_icon.src} />
+          <Icon src={aeropay_icon.src} variant="Desktop" />
           <CoinAmount>1000</CoinAmount>
         </Wrapper>
         <DropdownIcon rotation={isOpen ? "90deg" : "-90deg"} src={arrow.src} />

@@ -6,6 +6,7 @@ interface Props {
   isActive: boolean;
   w?: string;
   h?: string;
+  padding?: string;
 }
 
 export const ButtonSelector = styled.button<Props>`
@@ -13,9 +14,9 @@ export const ButtonSelector = styled.button<Props>`
   color: ${Colors.Neutral[100]};
   background: ${(p) => (p.isActive ? Colors.Brand.Default.Color : Colors.Neutral[200])};
   border-radius: 12px;
-  padding: 8px 0px;
+  padding: ${(p) => (p.padding ? p.padding : "8px 0px")};
   cursor: pointer;
-  border: 1px solid transparent;
+  border: none;
   display: flex;
   align-content: center;
   align-items: center;

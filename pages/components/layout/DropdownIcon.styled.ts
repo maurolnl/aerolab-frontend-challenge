@@ -6,8 +6,8 @@ interface Props {
 }
 
 export const DropdownIcon = styled(SVG)<Props>`
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   transform: rotate(${(props) => props.rotation});
   margin-left: 16px;
 `;
