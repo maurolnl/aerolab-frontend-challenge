@@ -29,27 +29,7 @@ const SectionWrapper = styled.div`
 
   gap: 64px;
 `;
-/*
-const TitleWrapper = styled.div`
-  position: absolute;
-  width: 30%;
-  height: 38px;
-  gap: 10px;
-`;
 
-const TitlePosition = styled.div`
-  position: relative;
-  top: -38px;
-  left: 126px;
-`;
-
-<TitleWrapper>
-              <TitleL2Default variant="gradient">tech</TitleL2Default>
-              <TitlePosition>
-                <TitleL2Default variant="solid">products</TitleL2Default>
-              </TitlePosition>
-            </TitleWrapper>
-*/
 const ProductSection = () => {
   return (
     <Wrapper>
