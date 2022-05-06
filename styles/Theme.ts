@@ -22,8 +22,8 @@ export const Colors = {
       TextFillColor: "transparent",
       BackgroundClip: "text",
     },
-    Light: "#CCE1FF",
-    Light2: "#E5F0FF",
+    Light: "#E5F0FF",
+    Light2: "#CCE1FF",
   },
   Green: {
     Default: "#29CC74",
@@ -36,7 +36,7 @@ export const Colors = {
   Specials: {
     SectionBG: {
       Color:
-        "linear-gradient(102.47deg, rgba(23, 111, 235, 0.5) 0%, rgba(255, 128, 255, 0.5) 100%)",
+        "linear-gradient(102.47deg, rgba(23, 111, 235, 0.5) -5.34%, rgba(255, 128, 255, 0.5) 106.58%)",
       TextFillColor: "transparent",
       BackgroundClip: "text",
     },
@@ -74,7 +74,7 @@ export const TextStyles = {
       FontFamily: "Montserrat",
       FontSize: "48px",
       FontWeight: "900",
-      LineHeight: "80%",
+      LineHeight: "38px",
       LetterSpacing: "0",
       FontVariant: "all-small-caps",
     },
@@ -82,7 +82,7 @@ export const TextStyles = {
       FontFamily: "Montserrat",
       FontSize: "32px",
       FontWeight: "900",
-      LineHeight: "100%",
+      LineHeight: "32px",
       LetterSpacing: "0",
       FontVariant: "all-small-caps",
     },
@@ -102,15 +102,15 @@ export const TextStyles = {
         FontSize: "18px",
         FontWeight: "600",
         LineHeight: "27px",
-        LetterSpacing: "0.05em",
+        LetterSpacing: "0.24em",
         FontVariant: "all-small-caps",
       },
-      AllCapsSpaced: {
+      AllCapsUnspaced: {
         FontFamily: "Montserrat",
         FontSize: "18px",
         FontWeight: "600",
         LineHeight: "27px",
-        LetterSpacing: "0.24em",
+        LetterSpacing: "0.05em",
         FontVariant: "all-small-caps",
       },
       LightWeight: {
