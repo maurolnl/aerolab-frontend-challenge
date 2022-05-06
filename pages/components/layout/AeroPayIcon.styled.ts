@@ -3,11 +3,11 @@ import SVG from "react-inlinesvg";
 
 interface Props {
   variant: string;
-  vAlign?: string;
+  valign?: string;
 }
 
 export const Icon = styled(SVG)<Props>`
-  vertical-align: ${(p) => (p.vAlign ? p.vAlign : "")};
+  vertical-align: ${(p) => (p.valign ? p.valign : "")};
 
   ${(p) => {
     switch (p.variant) {

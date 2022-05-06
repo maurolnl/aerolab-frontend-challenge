@@ -96,7 +96,7 @@ const Product: React.FC<Props> = ({name, description, image}) => {
       </ProductCard>
       <ButtonCTA h="59px" w="348px">
         <span>
-          Redeem for <Icon src={aeropay_icon.src} vAlign="middle" variant="Mobile" /> 12.500
+          Redeem for <Icon src={aeropay_icon.src} valign="middle" variant="Mobile" /> 12.500
         </span>
       </ButtonCTA>
     </ProductWrapper>

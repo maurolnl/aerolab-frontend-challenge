@@ -4,13 +4,15 @@ import SVG from "react-inlinesvg";
 import {Colors} from "../../../styles/Theme";
 
 interface Props {
-  variant: string;
-  rotation: string;
+  variant?: string;
+  rotation?: string;
   background?: string;
+  valign?: string;
 }
 
 export const Icon = styled(SVG)<Props>`
-  transform: rotate(${(props) => props.rotation});
+  transform: rotate(${(props) => (props.rotation ? props.rotation : "")});
+  vertical-align: ${(p) => (p.valign ? p.valign : "")};
 
   ${(p) => {
     switch (p.variant) {
@@ -23,6 +25,11 @@ export const Icon = styled(SVG)<Props>`
         return `
           width: 20px;
           height: 20px;
+        `;
+      case "Github":
+        return `
+          width: 28px;
+          height: 28px;
         `;
       default:
         return `
