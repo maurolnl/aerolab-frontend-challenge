@@ -8,6 +8,7 @@ import aerolab_walkthrough2_desktop from "../../../assets/illustrations/walkthro
 import aerolab_walkthrough2 from "../../../assets/icons/walkthrough-2.svg";
 import aerolab_walkthrough3_desktop from "../../../assets/illustrations/walkthroug-3-desktop.png";
 import aerolab_walkthrough1 from "../../../assets/icons/walkthrough-1.svg";
+import {Container} from "../layout/Container.styled";
 
 import WalkthroughCard, {ICard} from "./WalkthroughCard";
 
@@ -35,14 +36,11 @@ const card_source = [
   },
 ] as ICard[];
 
-const Container = styled.section`
-  width: 100%;
-  margin-top: 112px;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+
+  margin-top: 112px;
 
   height: 721px;
   width: 100%;
@@ -62,13 +60,14 @@ const WalkthroughBG = styled.div`
 
 const WalkthroughCards = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: row;
 `;
 
 const Walkthrough = () => {
   return (
-    <Container>
-      <Wrapper>
+    <Wrapper>
+      <Container>
         <WalkthroughCards>
           {card_source.map((card) => {
             return (
@@ -83,9 +82,9 @@ const Walkthrough = () => {
             );
           })}
         </WalkthroughCards>
-        <WalkthroughBG />
-      </Wrapper>
-    </Container>
+      </Container>
+      <WalkthroughBG />
+    </Wrapper>
   );
 };
 
