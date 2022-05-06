@@ -7,9 +7,8 @@ import {ArrowIcon} from "../layout/ArrowIcon.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {Container} from "../layout/Container.styled";
 import {Stack} from "../layout/Stack.styled";
-import {TextAllCap} from "../layout/TextAllCap.styled";
-import {TextDefault} from "../layout/TextDefault.styled";
-import {TitleL1} from "../layout/TitleL1.styled";
+import {TextDefault} from "../layout/Text/TextDefault.styled";
+import {TitleL1} from "../layout/Title/TitleL1.styled";
 import arrow_icon from "../../../assets/icons/arrow.svg";
 import {Colors} from "../../../styles/Theme";
 
@@ -46,6 +45,7 @@ const IllustrationBackground = styled.div`
   width: 722px;
   height: 600px;
   background: ${Colors.Specials.IllustrationBG.Color};
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
   opacity: 0.5;
   border-radius: 104px;
   z-index: -1;
@@ -58,7 +58,7 @@ const Hero = () => {
         <LeftHeroSection>
           <Stack direction="column" gap="0px" width="590px">
             <Wrapper1>
-              <TextAllCap>explore the</TextAllCap>
+              <TextDefault variant="AllCaps">explore the</TextDefault>
               <TitleL1 variant="gradient">Tech</TitleL1>
               <TitleL1 variant="solid">Zone</TitleL1>
             </Wrapper1>
@@ -67,7 +67,7 @@ const Hero = () => {
               for cool tech.
             </TextDefault>
           </Stack>
-          <ButtonCTA h="80px" mt="64px" w="318px">
+          <ButtonCTA h="80px" mt="64px" textVariant="AllCaps" w="318px">
             View All Products <ArrowIcon rotation="0deg" src={arrow_icon.src} />
           </ButtonCTA>
         </LeftHeroSection>

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-import {Colors, TextStyles} from "../../../styles/Theme";
+import {Colors, TextStyles} from "../../../../styles/Theme";
 
 interface TitleProp {
   variant: string;
 }
 
-export const TitleL1 = styled.h1<TitleProp>`
-  ${TextStyles.Bundler(TextStyles.Headings.L1)}
+export const TitleL3 = styled.h1<TitleProp>`
+  ${TextStyles.Bundler(TextStyles.Headings.L3)}
 
   margin: 0;
 
