@@ -5,6 +5,8 @@ import {GlobalStyle} from "../styles/Global";
 
 import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
+import ProductSection from "./components/Products/ProductSection";
+import Walkthrough from "./components/Walkthrough/Walkthrough";
 
 const Home: NextPage = () => {
   return (
@@ -24,6 +26,8 @@ const Home: NextPage = () => {
       </Head>
       <Navbar />
       <Hero />
+      <Walkthrough />
+      <ProductSection />
     </>
   );
 };
