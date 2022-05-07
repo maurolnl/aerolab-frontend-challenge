@@ -40,8 +40,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  margin-top: 112px;
-
   height: 721px;
   width: 100%;
   position: relative;

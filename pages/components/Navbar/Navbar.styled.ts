@@ -10,5 +10,4 @@ export const StyledNavbar = styled.header<Props>`
   align-items: center;
   height: ${(props) => props.height};
   padding: 40px 0px;
-  margin-bottom: 112px;
 `;

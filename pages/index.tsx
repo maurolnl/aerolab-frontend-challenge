@@ -5,6 +5,8 @@ import {GlobalStyle} from "../styles/Global";
 
 import Footer from "./components/Footer/Footer";
 import Hero from "./components/Hero/Hero";
+import LandingPage from "./components/LandingPage";
+import {Container} from "./components/layout/Container.styled";
 import {Stack} from "./components/layout/Stack.styled";
 import Navbar from "./components/Navbar/Navbar";
 import ProductSection from "./components/Products/ProductSection";
@@ -26,12 +28,13 @@ const Home: NextPage = () => {
           type="font/ttf"
         />
       </Head>
-      <Navbar />
-      <Hero />
-      <Stack direction="column" gap="160px">
-        <Walkthrough />
-        <ProductSection />
-        <Footer />
+      <Stack direction="column" gap="135px">
+        <LandingPage />
+        <Stack direction="column" gap="160px">
+          <Walkthrough />
+          <ProductSection />
+          <Footer />
+        </Stack>
       </Stack>
     </>
   );
