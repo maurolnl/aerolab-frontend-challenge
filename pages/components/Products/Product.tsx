@@ -8,14 +8,19 @@ import {Icon} from "../layout/AeroPayIcon.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TextL2Default} from "../layout/Text/TextL2Default.styled";
+import {device} from "../media/media";
 
 const ProductWrapper = styled.article`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
-  width: 348px;
+  width: 311.67px;
   height: 506px;
+
+  @media ${device.desktop} {
+    width: 348px;
+  }
 
   gap: 16px;
 
@@ -27,7 +32,7 @@ const ProductCard = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  width: 348px;
+  width: 100%;
   height: 431px;
 
   padding: 0px;
@@ -94,7 +99,7 @@ const Product: React.FC<Props> = ({name, description, image}) => {
           <TextL2Default variant="AllCaps">Product type</TextL2Default>
         </ProductDetail>
       </ProductCard>
-      <ButtonCTA h="59px" w="348px">
+      <ButtonCTA borderRadius="16px" h="59px" w="100%">
         <span>
           Redeem for <Icon src={aeropay_icon.src} valign="middle" variant="Mobile" /> 12.500
         </span>
