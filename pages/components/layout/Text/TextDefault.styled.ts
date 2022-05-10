@@ -10,6 +10,7 @@ interface Props {
   whiteSpace?: string;
   variant?: string;
   alignText?: string;
+  display?: string;
 }
 
 export const TextDefault = styled.span<Props>`
@@ -17,6 +18,7 @@ export const TextDefault = styled.span<Props>`
   margin-left: ${(p) => (p.ml ? p.ml : "")};
   margin-top: ${(p) => (p.mt ? p.mt : "")};
   text-align: ${(p) => (p.alignText ? p.alignText : "")};
+  display: ${(p) => (p.display ? p.display : "")};
 
   ${(p) => {
     switch (p.color) {
@@ -39,21 +41,12 @@ export const TextDefault = styled.span<Props>`
     switch (p.variant) {
       case "AllCaps":
         return TextStyles.Bundler(TextStyles.Texts.L1.AllCaps);
+      case "Small":
+        return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.Default);
       default:
         return TextStyles.Bundler(TextStyles.Texts.L1.Default);
     }
   }};
-
-  @media ${device.tablet} {
-    ${(p) => {
-      switch (p.variant) {
-        case "AllCaps":
-          return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.AllCaps);
-        default:
-          return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.Default);
-      }
-    }};
-  }
 
   @media ${device.mobile} {
     ${(p) => {

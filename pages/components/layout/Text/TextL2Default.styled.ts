@@ -26,21 +26,12 @@ export const TextL2Default = styled.p<Props>`
     switch (p.variant) {
       case "AllCaps":
         return TextStyles.Bundler(TextStyles.Texts.L2.AllCaps);
+      case "Small":
+        return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.Default);
       default:
         return TextStyles.Bundler(TextStyles.Texts.L2.Default);
     }
   }};
-
-  @media ${device.tablet} {
-    ${(p) => {
-      switch (p.variant) {
-        case "AllCaps":
-          return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.AllCaps);
-        default:
-          return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.Default);
-      }
-    }};
-  }
 
   @media ${device.mobile} {
     ${(p) => {
