@@ -6,6 +6,7 @@ import {Colors, TextStyles} from "../../../styles/Theme";
 import github_icon_default from "../../../assets/icons/github-default.svg";
 import github_icon_active from "../../../assets/icons/github-active.svg";
 import {Icon} from "../layout/AeroPayIcon.styled";
+import {device} from "../media/media";
 
 const Wrapper = styled.footer`
   display: flex;
@@ -13,7 +14,11 @@ const Wrapper = styled.footer`
   align-items: center;
 
   width: 100%;
-  height: 200px;
+  height: 120px;
+
+  @media ${device.desktop} {
+    height: 200px;
+  }
 `;
 const NavLink = styled.a`
   display: flex;
