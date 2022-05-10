@@ -2,27 +2,39 @@ import React from "react";
 import styled from "styled-components";
 
 import {TextDefault} from "../layout/Text/TextDefault.styled";
+import {device} from "../media/media";
 
 import Pager from "./Filters/Pager";
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  justify-content: center;
   align-items: center;
 
+  gap: 24px;
+
   width: 100%;
-  height: 64px;
+
+  @media ${device.desktop} {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 64px;
+  }
 `;
 
-const Empty = styled.div`
+interface Props {
+  display?: string;
+}
+const Empty = styled.div<Props>`
+  display: ${(p) => (p.display ? p.display : "")};
   width: 259px;
 `;
 
 const PageDescription = () => {
   return (
     <Wrapper>
-      <Empty />
+      <Empty display="none" />
       <p>
         <TextDefault color="gradientSemiExtended">16 of 32</TextDefault>
         <TextDefault> products</TextDefault>
