@@ -8,6 +8,8 @@ import {Colors, Shadows, TextStyles} from "../../styles/Theme";
 import {DropdownIcon} from "./layout/DropdownIcon.styled";
 import {Icon} from "./layout/AeroPayIcon.styled";
 import AeroPay from "./AeroPay/AeroPay";
+import {device} from "./media/media";
+import useMedia from "./layout/hooks";
 
 const CoinAmount = styled.p`
   margin-left: 8px;
@@ -33,6 +35,11 @@ const AeroCoinButton = styled.button`
   &:focus {
     box-shadow: ${Shadows.Elevation1.HoverAndActive};
   }
+
+  @media ${device.tablet} {
+    width: 143px;
+    height: 40px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -48,6 +55,7 @@ const PaymentBox = styled.div`
 
 const AeroCoins = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
+  const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   const handleClose = () => {
     setOpen(false);
@@ -57,10 +65,14 @@ const AeroCoins = () => {
     <PaymentBox>
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
-          <Icon src={aeropay_icon.src} variant="Desktop" />
+          <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
           <CoinAmount>1000</CoinAmount>
         </Wrapper>
-        <DropdownIcon rotation={isOpen ? "90deg" : "-90deg"} src={arrow.src} />
+        <DropdownIcon
+          rotation={isOpen ? "90deg" : "-90deg"}
+          src={arrow.src}
+          variant={isDesktop ? "Desktop" : "Mobile"}
+        />
       </AeroCoinButton>
       {isOpen && <AeroPay onClose={handleClose} />}
     </PaymentBox>
