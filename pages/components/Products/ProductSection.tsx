@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import {Container} from "../layout/Container.styled";
 import {TitleL2Default} from "../layout/Title/TitleL2Default.styled";
+import {device} from "../media/media";
 
 import Filters from "./Filters/Filters";
 import PageDescription from "./PageDescription";
@@ -13,7 +14,9 @@ const HeaderWrapper = styled.header`
   flex-direction: column;
   justify-content: space-between;
 
-  height: 142px;
+  @media ${device.desktop} {
+    height: 142px;
+  }
 
   gap: 42.5px;
 `;
@@ -25,19 +28,24 @@ const SectionWrapper = styled.div`
   gap: 64px;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
 const ProductSection = () => {
   return (
     <Container>
       <SectionWrapper>
         <HeaderWrapper>
-          <div>
+          <TitleWrapper>
             <TitleL2Default display="inline" variant="gradientExtended">
               tech
             </TitleL2Default>
             <TitleL2Default display="inline" variant="solid">
               products
             </TitleL2Default>
-          </div>
+          </TitleWrapper>
           <Filters />
         </HeaderWrapper>
         <Products />

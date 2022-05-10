@@ -5,13 +5,14 @@ import {ButtonSelector} from "./Button/ButtonSelector.styled";
 
 interface StyleProps {
   gap?: string;
+  display?: string;
 }
 
 const ToggleWrapper = styled.div<StyleProps>`
-  display: flex;
+  display: ${(p) => (p.display ? p.display : "flex")};
   flex-direction: row;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   gap: ${(p) => (p.gap ? p.gap : "4px")};
 `;
@@ -23,13 +24,14 @@ interface Props {
   padding?: string;
   h?: string;
   w?: string;
+  display?: string;
 }
 
-const Index: React.FC<Props> = ({labels, selectButtonIndex, gap, padding, w, h}) => {
+const Index: React.FC<Props> = ({labels, selectButtonIndex, gap, padding, w, h, display}) => {
   const [active, setActive] = useState<number>(selectButtonIndex ? selectButtonIndex : 0);
 
   return (
-    <ToggleWrapper gap={gap}>
+    <ToggleWrapper display={display} gap={gap}>
       {labels.map((label, index) => {
         return (
           <ButtonSelector

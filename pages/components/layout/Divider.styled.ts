@@ -3,9 +3,12 @@ import SVG from "react-inlinesvg";
 
 interface Props {
   variant: string;
+  display?: string;
 }
 
 export const Divider = styled(SVG)<Props>`
+  display: ${(p) => (p.display ? p.display : "")};
+
   ${(p) => {
     switch (p.variant) {
       case "Desktop":

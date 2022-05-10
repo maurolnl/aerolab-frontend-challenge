@@ -9,6 +9,7 @@ interface Props {
   h: string;
   variant?: string;
   textVariant?: string;
+  borderRadius?: string;
 }
 
 export const ButtonCTA = styled.button<Props>`
@@ -22,7 +23,7 @@ export const ButtonCTA = styled.button<Props>`
   align-items: center;
   margin-top: ${(p) => (p.mt ? p.mt : "")};
   cursor: pointer;
-  border-radius: 24px;
+  border-radius: ${(p) => (p.borderRadius ? p.borderRadius : "24px")};
   border: none;
   padding: 0px;
   box-shadow: ${Shadows.Elevation1.Default};

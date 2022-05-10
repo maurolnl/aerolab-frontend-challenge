@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import Divider_115 from "../../../../assets/icons/Divider_115.svg";
 import {Divider} from "../../layout/Divider.styled";
+import useMedia from "../../layout/hooks";
+import {Stack} from "../../layout/Stack.styled";
+import ToggleGroup from "../../layout/ToggleGroup";
 
 import CategoryFilter from "./CategoryFilter";
 import Pager from "./Pager";
@@ -29,15 +32,26 @@ const CategoryAndSortWrapper = styled.div`
 `;
 
 const Filters = () => {
+  const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+  const sortTypes = ["Most Recent", "Lowest Price", "Highest Price"];
+
   return (
-    <Wrapper>
-      <CategoryAndSortWrapper>
-        <CategoryFilter />
-        <Divider src={Divider_115.src} variant="Desktop" />
-        <Sort />
-      </CategoryAndSortWrapper>
-      <Pager />
-    </Wrapper>
+    <Stack direction="column" gap="24px">
+      <Wrapper>
+        <CategoryAndSortWrapper>
+          <CategoryFilter />
+          <Divider display={isDesktop ? "" : "none"} src={Divider_115.src} variant="Desktop" />
+          <Sort />
+        </CategoryAndSortWrapper>
+        <Pager />
+      </Wrapper>
+      <ToggleGroup
+        display={isDesktop ? "none" : "flex"}
+        gap="12px"
+        labels={sortTypes}
+        padding="8px 24px"
+      />
+    </Stack>
   );
 };
 

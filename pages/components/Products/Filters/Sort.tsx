@@ -3,14 +3,19 @@ import styled from "styled-components";
 
 import {TextDefault} from "../../layout/Text/TextDefault.styled";
 import ToggleGroup from "../../layout/ToggleGroup";
+import {device} from "../../media/media";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  display: none;
 
-  gap: 16px;
+  @media ${device.desktop} {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 16px;
+  }
 `;
 
 const Sort = () => {
