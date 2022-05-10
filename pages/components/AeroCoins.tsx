@@ -20,8 +20,8 @@ const AeroCoinButton = styled.button`
   border: 1px solid;
   border-color: ${Colors.Neutral[300]};
   background-color: ${Colors.Neutral[0]};
-  height: 48px;
-  width: 156px;
+  width: 143px;
+  height: 40px;
   justify-content: space-between;
   border-radius: 16px;
   padding: 8px 16px;
@@ -36,9 +36,9 @@ const AeroCoinButton = styled.button`
     box-shadow: ${Shadows.Elevation1.HoverAndActive};
   }
 
-  @media ${device.tablet} {
-    width: 143px;
-    height: 40px;
+  @media ${device.desktop} {
+    height: 48px;
+    width: 156px;
   }
 `;
 
