@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import {Colors, TextStyles} from "../../../../styles/Theme";
+import {device} from "../../media/media";
 
 interface Props {
   variant?: string;
@@ -28,5 +29,27 @@ export const TextL2Default = styled.p<Props>`
       default:
         return TextStyles.Bundler(TextStyles.Texts.L2.Default);
     }
-  }}
+  }};
+
+  @media ${device.tablet} {
+    ${(p) => {
+      switch (p.variant) {
+        case "AllCaps":
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.AllCaps);
+        default:
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.Default);
+      }
+    }};
+  }
+
+  @media ${device.mobile} {
+    ${(p) => {
+      switch (p.variant) {
+        case "AllCaps":
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.AllCaps);
+        default:
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L2.Default);
+      }
+    }};
+  }
 `;

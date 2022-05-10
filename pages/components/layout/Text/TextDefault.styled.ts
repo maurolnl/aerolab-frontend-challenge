@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import {Colors, TextStyles} from "../../../../styles/Theme";
+import {device} from "../../media/media";
 
 interface Props {
   mt?: string;
@@ -8,12 +9,14 @@ interface Props {
   color?: string;
   whiteSpace?: string;
   variant?: string;
+  alignText?: string;
 }
 
 export const TextDefault = styled.span<Props>`
   white-space: ${(p) => (p.whiteSpace ? p.whiteSpace : "")};
   margin-left: ${(p) => (p.ml ? p.ml : "")};
   margin-top: ${(p) => (p.mt ? p.mt : "")};
+  text-align: ${(p) => (p.alignText ? p.alignText : "")};
 
   ${(p) => {
     switch (p.color) {
@@ -40,4 +43,26 @@ export const TextDefault = styled.span<Props>`
         return TextStyles.Bundler(TextStyles.Texts.L1.Default);
     }
   }};
+
+  @media ${device.tablet} {
+    ${(p) => {
+      switch (p.variant) {
+        case "AllCaps":
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.AllCaps);
+        default:
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.Default);
+      }
+    }};
+  }
+
+  @media ${device.mobile} {
+    ${(p) => {
+      switch (p.variant) {
+        case "AllCaps":
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.AllCaps);
+        default:
+          return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.Default);
+      }
+    }};
+  }
 `;
