@@ -18,13 +18,13 @@ export const Icon = styled(SVG)<Props>`
     switch (p.variant) {
       case "Desktop":
         return `
-          width: 48px;
-          height: 48px;
+          width: 40px;
+          height: 40px;
         `;
       case "Mobile":
         return `
-          width: 20px;
-          height: 20px;
+          width: 33px;
+          height: 33px;
         `;
       case "Github":
         return `
@@ -35,20 +35,6 @@ export const Icon = styled(SVG)<Props>`
         return `
           width: 24px;
           height: 24px;
-    `;
-    }
-  }}
-
-  ${(p) => {
-    switch (p.background) {
-      case "Light":
-        return `
-          background: ${Colors.Brand.Light2};
-          border-radius: 8px;
-        `;
-      default:
-        return `
-          background: none
     `;
     }
   }}
