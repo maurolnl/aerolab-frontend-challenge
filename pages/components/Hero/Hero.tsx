@@ -103,7 +103,7 @@ const Hero = () => {
               <TitleL1 variant="gradient">Tech</TitleL1>
               <TitleL1 variant="solid">Zone</TitleL1>
             </TitleWrapper>
-            <TextDefault alignText={!isDesktop ? "center" : ""} mt="24px">
+            <TextDefault alignText={!isDesktop ? "center" : ""} mt="24px" variant="Small">
               Here you’ll be able to exchange all of your hard-earned Aeropoints and exchange them
               for cool tech.
             </TextDefault>
