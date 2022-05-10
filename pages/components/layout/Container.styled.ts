@@ -16,4 +16,11 @@ export const Container = styled.div<Props>`
   @media ${device.tablet} {
     width: 985px;
   }
+  @media ${device.mobile} {
+    width: 850px;
+  }
+  @media ${device.mobileS} {
+    width: 100%;
+    padding: 0px 20px;
+  }
 `;
