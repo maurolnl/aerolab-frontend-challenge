@@ -4,15 +4,15 @@ import Head from "next/head";
 import {GlobalStyle} from "../styles/Global";
 
 import Footer from "./components/Footer/Footer";
-import Hero from "./components/Hero/Hero";
 import LandingPage from "./components/LandingPage";
-import {Container} from "./components/layout/Container.styled";
+import useMedia from "./components/layout/hooks";
 import {Stack} from "./components/layout/Stack.styled";
-import Navbar from "./components/Navbar/Navbar";
 import ProductSection from "./components/Products/ProductSection";
 import Walkthrough from "./components/Walkthrough/Walkthrough";
 
 const Home: NextPage = () => {
+  const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+
   return (
     <>
       <GlobalStyle />
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           type="font/ttf"
         />
       </Head>
-      <Stack direction="column" gap="135px">
+      <Stack direction="column" gap={isDesktop ? "135px" : "19px"}>
         <LandingPage />
         <Stack direction="column" gap="160px">
           <Walkthrough />

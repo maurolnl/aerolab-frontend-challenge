@@ -6,10 +6,12 @@ import {Colors, Shadows} from "../../../styles/Theme";
 import {Icon} from "../layout/Icon.styled";
 import {TitleL3} from "../layout/Title/TitleL3.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
+import {device} from "../media/media";
+import useMedia from "../layout/hooks";
 
 const Wrapper = styled.article`
-  width: 532px;
-  height: 676px;
+  height: 477px;
+  width: 323px;
   padding: 12px;
 
   display: flex;
@@ -23,26 +25,38 @@ const Wrapper = styled.article`
   border-color: ${Colors.Neutral[300]};
   border-radius: 32px;
 
-  ${(p) => {
-    switch (p.id) {
-      case "1":
-        return `
+  @media ${device.desktop} {
+    ${(p) => {
+      switch (p.id) {
+        case "1":
+          return `
           transform: translate(80px, 35px) rotate(-3deg);
         `;
-      case "3":
-        return `
+        case "3":
+          return `
           transform: translate(-80px, 35px) rotate(3deg);
     `;
-    }
-  }}
+      }
+    }}
+  }
+
+  @media ${device.desktop} {
+    width: 532px;
+    height: 676px;
+  }
 
   z-index: 3;
 `;
 
 const Header = styled.div`
   position: relative;
-  width: 508px;
-  height: 498px;
+  width: 299px;
+  height: 290px;
+
+  @media ${device.desktop} {
+    width: 508px;
+    height: 498px;
+  }
 
   z-index: 3;
 `;
@@ -63,8 +77,13 @@ const HeaderBG = styled.div`
 `;
 
 const CardBody = styled.div`
-  width: 508px;
-  height: 154px;
+  width: 299px;
+  height: 164px;
+
+  @media ${device.desktop} {
+    width: 508px;
+    height: 154px;
+  }
 
   display: flex;
   flex-direction: column;
@@ -89,27 +108,72 @@ const TitleWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  width: 372px;
+  width: 251px;
+
+  @media ${device.desktop} {
+    width: 372px;
+  }
+`;
+
+const IconBG = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${Colors.Brand.Light2};
+  border-radius: 8px;
+
+  @media ${device.desktop} {
+    width: 48px;
+    height: 48px;
+  }
+
+  @media ${device.tablet} {
+    width: 40px;
+    height: 40px;
+  }
+
+  @media ${device.mobile} {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 export interface ICard {
   id: string;
   headerImage: StaticImageData;
+  headerImageMobile: StaticImageData;
   title: string;
   titleIcon: string;
   description: string;
 }
 
-const WalkthroughCard: React.FC<ICard> = ({id, headerImage, title, titleIcon, description}) => {
+const WalkthroughCard: React.FC<ICard> = ({
+  id,
+  headerImage,
+  headerImageMobile,
+  title,
+  titleIcon,
+  description,
+}) => {
+  const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+
   return (
     <Wrapper id={id}>
       <Header>
-        <Image alt={"Sally-31"} layout="fill" objectFit="cover" src={headerImage} />
+        <Image
+          alt={"Sally-31"}
+          layout="fill"
+          objectFit="cover"
+          src={isDesktop ? headerImage : headerImageMobile}
+        />
         <HeaderBG />
       </Header>
       <CardBody>
         <TitleWrapper>
-          <Icon background="Light" rotation="0deg" src={titleIcon} variant="Desktop" />
+          <IconBG>
+            <Icon rotation="0deg" src={titleIcon} variant={isDesktop ? "Desktop" : "Mobile"} />
+          </IconBG>
           <TitleL3 variant="gradient">{title}</TitleL3>
         </TitleWrapper>
         <TextWrapper>

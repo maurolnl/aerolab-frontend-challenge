@@ -10,16 +10,38 @@ import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TitleL1} from "../layout/Title/TitleL1.styled";
 import arrow_icon from "../../../assets/icons/arrow.svg";
 import {Colors} from "../../../styles/Theme";
+import {device} from "../media/media";
+import useMedia from "../layout/hooks";
 
 const Wrapper = styled.section`
   display: flex;
   flex-direction: row;
+
+  @media ${device.tablet} {
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media ${device.mobile} {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const LeftHeroSection = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 50%;
+
+  @media ${device.tablet} {
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media ${device.mobile} {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const RightHeroSection = styled.div`
@@ -28,13 +50,31 @@ const RightHeroSection = styled.div`
   top: 45px;
   height: 795px;
   width: 897px;
+
+  @media ${device.tablet} {
+    display: none;
+  }
+
+  @media ${device.mobile} {
+    display: none;
+  }
 `;
 
-const Wrapper1 = styled.div`
+const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
+
+  @media ${device.tablet} {
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media ${device.mobile} {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const IllustrationBackground = styled.div`
@@ -51,24 +91,34 @@ const IllustrationBackground = styled.div`
 `;
 
 const Hero = () => {
+  const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+
   return (
     <Wrapper>
       <LeftHeroSection>
-        <Stack direction="column" gap="0px" width="590px">
-          <Wrapper1>
-            <TextDefault variant="AllCaps">explore the</TextDefault>
-            <TitleL1 variant="gradient">Tech</TitleL1>
-            <TitleL1 variant="solid">Zone</TitleL1>
-          </Wrapper1>
-          <TextDefault mt="24px">
-            Here you’ll be able to exchange all of your hard-earned Aeropoints and exchange them for
-            cool tech.
-          </TextDefault>
+        <Stack direction="column" gap={isDesktop ? "64px" : "40px"}>
+          <Stack direction="column" gap="0px" width={isDesktop ? "590px" : "289px"}>
+            <TitleWrapper>
+              <TextDefault variant="AllCaps">explore the</TextDefault>
+              <TitleL1 variant="gradient">Tech</TitleL1>
+              <TitleL1 variant="solid">Zone</TitleL1>
+            </TitleWrapper>
+            <TextDefault alignText={!isDesktop ? "center" : ""} mt="24px">
+              Here you’ll be able to exchange all of your hard-earned Aeropoints and exchange them
+              for cool tech.
+            </TextDefault>
+          </Stack>
+          <ButtonCTA
+            h={isDesktop ? "80px" : "64px"}
+            textVariant="AllCaps"
+            w={isDesktop ? "318px" : "303px"}
+          >
+            View All Products <ArrowIcon rotation="0deg" src={arrow_icon.src} />
+          </ButtonCTA>
         </Stack>
-        <ButtonCTA h="80px" mt="64px" textVariant="AllCaps" w="318px">
-          View All Products <ArrowIcon rotation="0deg" src={arrow_icon.src} />
-        </ButtonCTA>
       </LeftHeroSection>
+
+      {/* Only shown on desktop media */}
       <RightHeroSection>
         <Image
           alt="hero-illustration"
