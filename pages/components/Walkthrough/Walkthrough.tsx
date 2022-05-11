@@ -23,6 +23,7 @@ const card_source = [
     id: "1",
     title: "1—browse",
     description: "Browse our tech catalog with more than 20 top tech products",
+    descriptionMobile: "Browse our tech catalog with more than 20 top tech products",
     titleIcon: aerolab_walkthrough1.src,
     headerImage: aerolab_walkthrough1_desktop,
     headerImageMobile: aerolab_walkthrough1_mobile,
@@ -31,6 +32,7 @@ const card_source = [
     id: "2",
     title: "2—choose",
     description: "Exchange your hard earned AeroPoints for the item you want",
+    descriptionMobile: "Exchange your hard-earned AeroPoints for a cool tech item",
     titleIcon: aerolab_walkthrough3.src,
     headerImage: aerolab_walkthrough2_desktop,
     headerImageMobile: aerolab_walkthrough2_mobile,
@@ -39,6 +41,7 @@ const card_source = [
     id: "3",
     title: "3—enjoy!",
     description: "All done, you can relax! We’ll take care of delivery of your tech item!",
+    descriptionMobile: "All done We’ll take care of delivery of your tech item!",
     titleIcon: aerolab_walkthrough2.src,
     headerImage: aerolab_walkthrough3_desktop,
     headerImageMobile: aerolab_walkthrough3_mobile,
@@ -89,6 +92,12 @@ const WalkthroughBG = styled.div`
     bottom: 0px;
     left: 0px;
   }
+
+  @media ${device.mobile} {
+    height: 1716.16px;
+    bottom: 0px;
+    left: 0px;
+  }
 `;
 
 const WalkthroughCards = styled.div`
@@ -107,6 +116,8 @@ const WalkthroughCards = styled.div`
   @media ${device.mobile} {
     flex-direction: column;
     align-items: center;
+
+    gap: 24px;
   }
 `;
 
@@ -122,6 +133,11 @@ const IllustrationWrapper = styled.div`
   @media ${device.desktop} {
     display: none;
   }
+
+  @media (max-width: 580px) {
+    width: 580px;
+    left: calc((100vw - 580px) / 2);
+  }
 `;
 
 const Walkthrough = () => {
@@ -134,6 +150,7 @@ const Walkthrough = () => {
               <WalkthroughCard
                 key={card.id}
                 description={card.description}
+                descriptionMobile={card.descriptionMobile}
                 headerImage={card.headerImage}
                 headerImageMobile={card.headerImageMobile}
                 id={card.id}

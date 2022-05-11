@@ -45,6 +45,11 @@ const Wrapper = styled.article`
     height: 676px;
   }
 
+  @media ${device.mobileS} {
+    width: 335px;
+    height: 408px;
+  }
+
   z-index: 3;
 `;
 
@@ -56,6 +61,11 @@ const Header = styled.div`
   @media ${device.desktop} {
     width: 508px;
     height: 498px;
+  }
+
+  @media ${device.mobileS} {
+    width: 311px;
+    height: 245px;
   }
 
   z-index: 3;
@@ -85,13 +95,18 @@ const CardBody = styled.div`
     height: 154px;
   }
 
+  @media ${device.mobileS} {
+    width: 311px;
+    height: 140px;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 
   gap: 12px;
-  padding: 16px 24px 24px;
+  padding: 16px 24px 24px 24px;
 
   border: 1px solid;
   border-color: ${Colors.Neutral[300]};
@@ -112,6 +127,10 @@ const TextWrapper = styled.div`
 
   @media ${device.desktop} {
     width: 372px;
+  }
+
+  @media ${device.mobileS} {
+    width: 263px;
   }
 `;
 
@@ -146,6 +165,7 @@ export interface ICard {
   title: string;
   titleIcon: string;
   description: string;
+  descriptionMobile: string;
 }
 
 const WalkthroughCard: React.FC<ICard> = ({
@@ -155,6 +175,7 @@ const WalkthroughCard: React.FC<ICard> = ({
   title,
   titleIcon,
   description,
+  descriptionMobile,
 }) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
@@ -177,7 +198,7 @@ const WalkthroughCard: React.FC<ICard> = ({
           <TitleL3 variant="gradient">{title}</TitleL3>
         </TitleWrapper>
         <TextWrapper>
-          <TextDefault>{description}</TextDefault>
+          <TextDefault>{isDesktop ? description : descriptionMobile}</TextDefault>
         </TextWrapper>
       </CardBody>
     </Wrapper>
