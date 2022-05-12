@@ -1,7 +1,9 @@
 import Image from "next/image";
+import {useState} from "react";
 import styled from "styled-components";
 
 import aeropay_icon from "../../../assets/icons/aeropay-3.svg";
+import aeropay_icon_disabled from "../../../assets/icons/aeropay-2.svg";
 import product_image from "../../../assets/product.png";
 import {Colors, Shadows} from "../../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
@@ -9,6 +11,7 @@ import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TextL2Default} from "../layout/Text/TextL2Default.styled";
 import {device} from "../media/media";
+import useMedia from "../layout/hooks";
 
 const ProductWrapper = styled.article`
   display: flex;
@@ -20,6 +23,10 @@ const ProductWrapper = styled.article`
 
   @media ${device.desktop} {
     width: 348px;
+  }
+
+  @media ${device.mobileS} {
+    width: 335px;
   }
 
   gap: 16px;
@@ -80,6 +87,13 @@ interface Props {
 }
 
 const Product: React.FC<Props> = ({name, description, image}) => {
+  const [isProcessing, setProcessing] = useState<boolean>(false);
+  const [isDisabled, setDisabled] = useState<boolean>(false);
+  const isMobileS = useMedia(["(max-width: 620px)"], [true]);
+
+  const buttonVariant = isDisabled ? "Disabled" : isProcessing ? "Processing" : "";
+  const iconVariant = isMobileS ? "Small" : "Mobile";
+
   return (
     <ProductWrapper>
       <ProductCard>
@@ -99,10 +113,20 @@ const Product: React.FC<Props> = ({name, description, image}) => {
           <TextL2Default variant="AllCaps">Product type</TextL2Default>
         </ProductDetail>
       </ProductCard>
-      <ButtonCTA borderRadius="16px" h="59px" w="100%">
-        <span>
-          Redeem for <Icon src={aeropay_icon.src} valign="middle" variant="Mobile" /> 12.500
-        </span>
+      <ButtonCTA borderRadius="16px" h="59px" variant={buttonVariant} w="100%">
+        {isDisabled ? (
+          <span>
+            You need{" "}
+            <Icon isDisabled="true" src={aeropay_icon.src} valign="middle" variant={iconVariant} />{" "}
+            000
+          </span>
+        ) : isProcessing ? (
+          "Processing..."
+        ) : (
+          <span>
+            Redeem for <Icon src={aeropay_icon.src} valign="middle" variant={iconVariant} /> 12.500
+          </span>
+        )}
       </ButtonCTA>
     </ProductWrapper>
   );
