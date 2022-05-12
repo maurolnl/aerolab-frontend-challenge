@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {useRouter} from "next/router";
 
 import {Colors, TextStyles} from "../../../styles/Theme";
 import github_icon_default from "../../../assets/icons/github-default.svg";
 import github_icon_active from "../../../assets/icons/github-active.svg";
 import {Icon} from "../layout/AeroPayIcon.styled";
 import {device} from "../media/media";
+import useMedia from "../layout/hooks";
 
 const Wrapper = styled.footer`
   display: flex;
@@ -25,10 +25,13 @@ const NavLink = styled.a`
   align-items: flex-end;
 
   gap: 10px;
+  color: ${Colors.Neutral[600]};
 
   ${TextStyles.Bundler(TextStyles.Texts.L1.Default)};
 
-  color: ${Colors.Neutral[600]};
+  @media ${device.mobileS} {
+    ${TextStyles.Bundler(TextStyles.Texts.Mobile.L1.Default)};
+  }
 
   &:active {
     ${Colors.Bundler(Colors.Brand.Default)};
@@ -37,22 +40,25 @@ const NavLink = styled.a`
 
 const Footer = () => {
   const [isActive, setActive] = useState<boolean>(false);
-  const router = useRouter();
+  const isMobile = useMedia(["(max-width: 1023px)"], [true]);
 
   return (
     <Wrapper>
       <NavLink
-        href="https://www.linkedin.com/in/maurolnl"
+        href="https://github.com/maurolnl/aerolab-frontend-challenge"
         target="_blank"
         onMouseDown={() => {
           setActive(true);
         }}
         onMouseUp={() => {
           setActive(false);
-          window.open("https://www.linkedin.com/in/maurolnl", "_blank");
+          window.open("https://github.com/maurolnl/aerolab-frontend-challenge", "_blank");
         }}
       >
-        <Icon src={isActive ? github_icon_active.src : github_icon_default.src} variant="Desktop" />{" "}
+        <Icon
+          src={isActive ? github_icon_active.src : github_icon_default.src}
+          variant={!isMobile ? "Desktop" : "Mobile"}
+        />{" "}
         View this repository
       </NavLink>
     </Wrapper>
