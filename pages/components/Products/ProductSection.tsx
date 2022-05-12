@@ -14,11 +14,14 @@ const HeaderWrapper = styled.header`
   flex-direction: column;
   justify-content: space-between;
 
+  gap: 42.5px;
   @media ${device.desktop} {
     height: 142px;
   }
 
-  gap: 42.5px;
+  @media ${device.mobileS} {
+    gap: 40px;
+  }
 `;
 
 const SectionWrapper = styled.div`
