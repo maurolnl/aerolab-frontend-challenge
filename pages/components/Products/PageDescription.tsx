@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import useMedia from "../layout/hooks";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {device} from "../media/media";
 
@@ -32,9 +33,11 @@ const Empty = styled.div<Props>`
 `;
 
 const PageDescription = () => {
+  const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+
   return (
     <Wrapper>
-      <Empty display="none" />
+      <Empty display={isDesktop ? "" : "none"} />
       <p>
         <TextDefault color="gradientSemiExtended">16 of 32</TextDefault>
         <TextDefault> products</TextDefault>
