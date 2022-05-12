@@ -8,6 +8,7 @@ import select_icon from "../../../../assets/icons/selector_icon.svg";
 import {SelectIcon} from "../../layout/SelectorIcon.styled";
 import useMedia from "../../layout/hooks";
 import ClientOnly from "../../ClientOnly";
+import {device} from "../../media/media";
 
 const DropdownIndicator = (props: any) => {
   return (
@@ -26,11 +27,18 @@ const Wrapper = styled.div`
   align-items: center;
 
   gap: 16px;
+
+  @media ${device.mobileS} {
+    width: 100%;
+  }
 `;
 
 const CategoryFilter = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
   const isMobile = useMedia(["(max-width: 1023px)"], [true]);
+  const isMobileS = useMedia(["(max-width: 620px)"], [true]);
+
+  const width = isMobileS ? "100%" : "256px";
 
   const fontSize = !isMobile
     ? TextStyles.Texts.L1.Default.FontSize
@@ -65,6 +73,7 @@ const CategoryFilter = () => {
     menu: (provided: any) => ({
       ...provided,
       color: `${Colors.Neutral[600]}`,
+      width: width,
     }),
     option: (provided: any, state: Props) => ({
       ...provided,
@@ -74,11 +83,12 @@ const CategoryFilter = () => {
       paddingBottom: 12,
       fontSize: `${fontSize}`,
       fontWeight: `${fontWeight}`,
+      cursor: "pointer",
       backgroundColor: state.isFocused || state.isSelected ? `${Colors.Neutral[100]}` : "white",
     }),
     control: () => ({
       // none of react-select's styles are passed to <Control />
-      width: "256px",
+      width: width,
       height: "59px",
       display: "flex",
       justifyContent: "space-between",
@@ -95,6 +105,10 @@ const CategoryFilter = () => {
       lineHeight: `${lineheight}`,
       letterSpacing: `${letterSpacing}`,
       fontVariant: `${TextStyles.Texts.L1.Default.FontVariant}`,
+    }),
+    container: (provided: any) => ({
+      ...provided,
+      width: width,
     }),
     singleValue: (provided: any, state: any) => {
       const opacity = state.isDisabled ? 0.5 : 1;
