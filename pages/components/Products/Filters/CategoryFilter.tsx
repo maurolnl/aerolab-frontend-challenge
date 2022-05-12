@@ -7,6 +7,7 @@ import {TextDefault} from "../../layout/Text/TextDefault.styled";
 import select_icon from "../../../../assets/icons/selector_icon.svg";
 import {SelectIcon} from "../../layout/SelectorIcon.styled";
 import useMedia from "../../layout/hooks";
+import ClientOnly from "../../ClientOnly";
 
 const DropdownIndicator = (props: any) => {
   return (
@@ -106,14 +107,16 @@ const CategoryFilter = () => {
 
   return (
     <Wrapper>
-      <TextDefault display={isDesktop ? "" : "none"}>Filter by: </TextDefault>
-      <Select
-        components={{DropdownIndicator, IndicatorSeparator: () => null}}
-        isSearchable={false}
-        options={options}
-        placeholder="All Products"
-        styles={customStyles}
-      />
+      <ClientOnly>
+        <TextDefault display={isDesktop ? "" : "none"}>Filter by: </TextDefault>
+        <Select
+          components={{DropdownIndicator, IndicatorSeparator: () => null}}
+          isSearchable={false}
+          options={options}
+          placeholder="All Products"
+          styles={customStyles}
+        />
+      </ClientOnly>
     </Wrapper>
   );
 };

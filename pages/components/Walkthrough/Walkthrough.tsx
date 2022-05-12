@@ -15,6 +15,7 @@ import aerolab_walkthrough1 from "../../../assets/icons/walkthrough-1.svg";
 import {Container} from "../layout/Container.styled";
 import {device} from "../media/media";
 import aerolab_sally_responsive from "../../../assets/illustrations/hero-responsive.png";
+import ClientOnly from "../ClientOnly";
 
 import WalkthroughCard, {ICard} from "./WalkthroughCard";
 
@@ -144,22 +145,24 @@ const Walkthrough = () => {
   return (
     <Wrapper>
       <Container>
-        <WalkthroughCards>
-          {card_source.map((card) => {
-            return (
-              <WalkthroughCard
-                key={card.id}
-                description={card.description}
-                descriptionMobile={card.descriptionMobile}
-                headerImage={card.headerImage}
-                headerImageMobile={card.headerImageMobile}
-                id={card.id}
-                title={card.title}
-                titleIcon={card.titleIcon}
-              />
-            );
-          })}
-        </WalkthroughCards>
+        <ClientOnly>
+          <WalkthroughCards>
+            {card_source.map((card) => {
+              return (
+                <WalkthroughCard
+                  key={card.id}
+                  description={card.description}
+                  descriptionMobile={card.descriptionMobile}
+                  headerImage={card.headerImage}
+                  headerImageMobile={card.headerImageMobile}
+                  id={card.id}
+                  title={card.title}
+                  titleIcon={card.titleIcon}
+                />
+              );
+            })}
+          </WalkthroughCards>
+        </ClientOnly>
         <IllustrationWrapper>
           <Image
             alt="sally-illustration"

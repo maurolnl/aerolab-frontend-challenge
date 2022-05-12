@@ -12,6 +12,7 @@ import arrow_icon from "../../../assets/icons/arrow.svg";
 import {Colors} from "../../../styles/Theme";
 import {device} from "../media/media";
 import useMedia from "../layout/hooks";
+import ClientOnly from "../ClientOnly";
 
 const Wrapper = styled.section`
   display: flex;
@@ -95,28 +96,34 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <LeftHeroSection>
-        <Stack direction="column" gap={isDesktop ? "64px" : "40px"}>
-          <Stack direction="column" gap="0px" width={isDesktop ? "590px" : "289px"}>
-            <TitleWrapper>
-              <TextDefault variant="AllCaps">explore the</TextDefault>
-              <TitleL1 variant="gradient">Tech</TitleL1>
-              <TitleL1 variant="solid">Zone</TitleL1>
-            </TitleWrapper>
-            <TextDefault alignText={!isDesktop ? "center" : ""} mt="24px" variant="Small">
-              Here you’ll be able to exchange all of your hard-earned Aeropoints and exchange them
-              for cool tech.
-            </TextDefault>
+      <ClientOnly>
+        <LeftHeroSection>
+          <Stack direction="column" gap={isDesktop ? "64px" : "40px"}>
+            <Stack direction="column" gap="0px" width={isDesktop ? "590px" : "289px"}>
+              <TitleWrapper>
+                <TextDefault variant="AllCaps">explore the</TextDefault>
+                <TitleL1 variant="gradient">Tech</TitleL1>
+                <TitleL1 variant="solid">Zone</TitleL1>
+              </TitleWrapper>
+              <TextDefault
+                alignText={!isDesktop ? "center" : ""}
+                mt="24px"
+                variant={isDesktop ? "" : "Small"}
+              >
+                Here you’ll be able to exchange all of your hard-earned Aeropoints and exchange them
+                for cool tech.
+              </TextDefault>
+            </Stack>
+            <ButtonCTA
+              h={isDesktop ? "80px" : "64px"}
+              textVariant="AllCaps"
+              w={isDesktop ? "318px" : "303px"}
+            >
+              View All Products <ArrowIcon rotation="0deg" src={arrow_icon.src} />
+            </ButtonCTA>
           </Stack>
-          <ButtonCTA
-            h={isDesktop ? "80px" : "64px"}
-            textVariant="AllCaps"
-            w={isDesktop ? "318px" : "303px"}
-          >
-            View All Products <ArrowIcon rotation="0deg" src={arrow_icon.src} />
-          </ButtonCTA>
-        </Stack>
-      </LeftHeroSection>
+        </LeftHeroSection>
+      </ClientOnly>
 
       {/* Only shown on desktop media */}
       <RightHeroSection>

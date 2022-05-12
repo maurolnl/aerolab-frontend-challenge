@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Divider_115 from "../../../../assets/icons/Divider_115.svg";
+import ClientOnly from "../../ClientOnly";
 import {Divider} from "../../layout/Divider.styled";
 import useMedia from "../../layout/hooks";
 import {Stack} from "../../layout/Stack.styled";
@@ -36,22 +37,24 @@ const Filters = () => {
   const sortTypes = ["Most Recent", "Lowest Price", "Highest Price"];
 
   return (
-    <Stack direction="column" gap="24px">
-      <Wrapper>
-        <CategoryAndSortWrapper>
-          <CategoryFilter />
-          <Divider display={isDesktop ? "" : "none"} src={Divider_115.src} variant="Desktop" />
-          <Sort />
-        </CategoryAndSortWrapper>
-        <Pager />
-      </Wrapper>
-      <ToggleGroup
-        display={isDesktop ? "none" : "flex"}
-        gap="12px"
-        labels={sortTypes}
-        padding="8px 24px"
-      />
-    </Stack>
+    <ClientOnly>
+      <Stack direction="column" gap="24px">
+        <Wrapper>
+          <CategoryAndSortWrapper>
+            <CategoryFilter />
+            <Divider display={isDesktop ? "" : "none"} src={Divider_115.src} variant="Desktop" />
+            <Sort />
+          </CategoryAndSortWrapper>
+          <Pager display="none" />
+        </Wrapper>
+        <ToggleGroup
+          display={isDesktop ? "none" : "flex"}
+          gap="12px"
+          labels={sortTypes}
+          padding="8px 24px"
+        />
+      </Stack>
+    </ClientOnly>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 
+import ClientOnly from "./ClientOnly";
 import Hero from "./Hero/Hero";
 import {Container} from "./layout/Container.styled";
 import useMedia from "./layout/hooks";
@@ -11,10 +12,12 @@ const LandingPage = () => {
 
   return (
     <Container position="relative">
-      <Stack direction="column" gap={isDesktop ? "112px" : "40px"}>
-        <Navbar />
-        <Hero />
-      </Stack>
+      <ClientOnly>
+        <Stack direction="column" gap={isDesktop ? "112px" : "40px"}>
+          <Navbar />
+          <Hero />
+        </Stack>
+      </ClientOnly>
     </Container>
   );
 };
