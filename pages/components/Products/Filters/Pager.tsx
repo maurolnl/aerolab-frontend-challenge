@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 import {Colors} from "../../../../styles/Theme";
@@ -6,11 +6,12 @@ import {PagerIcon} from "../../layout/PagerIcon.styled";
 import arrow from "../../../../assets/icons/chevron-default.svg";
 import {TextDefault} from "../../layout/Text/TextDefault.styled";
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{display?: string}>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  display: ${(p) => (p.display ? p.display : "")};
 
   gap: 24px;
 
@@ -21,8 +22,12 @@ const Wrapper = styled.div`
   border-radius: 16px;
 `;
 
-const PagerButton = styled.button`
-  background-color: ${Colors.Brand.Light};
+interface Props {
+  isDisabled?: boolean;
+}
+
+const PagerButton = styled.button<Props>`
+  background-color: ${(p) => (p.isDisabled ? Colors.Neutral[200] : Colors.Brand.Light)};
 
   width: 40px;
   height: 40px;
@@ -31,25 +36,32 @@ const PagerButton = styled.button`
   border: none;
   border-radius: 8px;
 
-  cursor: pointer;
+  cursor: ${(p) => (p.isDisabled ? "not-allowed" : "pointer")};
 
   &:hover {
-    background-color: ${Colors.Brand.Light2};
+    background-color: ${(p) => (p.isDisabled ? Colors.Neutral[200] : Colors.Brand.Light2)};
   }
 `;
 
-const Pager = () => {
+interface Props {
+  display?: string;
+}
+
+const Pager: React.FC<Props> = ({display}) => {
+  const [disabledLeft, setDisabledLeft] = useState<boolean>(true);
+  const [disabledRight, setDisabledRight] = useState<boolean>(false);
+
   return (
-    <Wrapper>
-      <PagerButton>
-        <PagerIcon rotation="180deg" src={arrow.src} variant="Desktop" />
+    <Wrapper display={display}>
+      <PagerButton isDisabled={disabledLeft}>
+        <PagerIcon isDisabled={disabledLeft} rotation="180deg" src={arrow.src} variant="Desktop" />
       </PagerButton>
       <p>
         <TextDefault>Page </TextDefault>
         <TextDefault color="gradient">1 of 2</TextDefault>
       </p>
-      <PagerButton>
-        <PagerIcon rotation="0deg" src={arrow.src} variant="Desktop" />
+      <PagerButton isDisabled={disabledRight}>
+        <PagerIcon isDisabled={disabledRight} rotation="0deg" src={arrow.src} variant="Desktop" />
       </PagerButton>
     </Wrapper>
   );
