@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
+import {device} from "../media/media";
+
 import {ButtonSelector} from "./Button/ButtonSelector.styled";
 
 interface StyleProps {
@@ -15,6 +17,10 @@ const ToggleWrapper = styled.div<StyleProps>`
   justify-content: flex-start;
 
   gap: ${(p) => (p.gap ? p.gap : "4px")};
+
+  @media ${device.mobileS} {
+    gap: 4px;
+  }
 `;
 
 interface Props {
