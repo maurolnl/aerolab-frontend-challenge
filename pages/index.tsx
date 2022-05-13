@@ -2,14 +2,13 @@ import type {NextPage} from "next";
 import Head from "next/head";
 
 import {GlobalStyle} from "../styles/Global";
-
-import ClientOnly from "./components/ClientOnly";
-import Footer from "./components/Footer/Footer";
-import LandingPage from "./components/LandingPage";
-import useMedia from "./components/layout/hooks";
-import {Stack} from "./components/layout/Stack.styled";
-import ProductSection from "./components/Products/ProductSection";
-import Walkthrough from "./components/Walkthrough/Walkthrough";
+import ClientOnly from "../components/ClientOnly";
+import Footer from "../components/Footer/Footer";
+import LandingPage from "../components/LandingPage";
+import useMedia from "../components/layout/hooks";
+import {Stack} from "../components/layout/Stack.styled";
+import ProductSection from "../components/Products/ProductSection";
+import Walkthrough from "../components/Walkthrough/Walkthrough";
 
 const Home: NextPage = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
