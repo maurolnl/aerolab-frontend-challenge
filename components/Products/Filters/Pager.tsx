@@ -54,14 +54,14 @@ const Pager: React.FC<Props> = ({display}) => {
   return (
     <Wrapper display={display}>
       <PagerButton isDisabled={disabledLeft}>
-        <PagerIcon isDisabled={disabledLeft} rotation="180deg" src={arrow.src} variant="Desktop" />
+        <PagerIcon $isdisabled={disabledLeft} rotation="180deg" src={arrow.src} variant="Desktop" />
       </PagerButton>
       <p>
         <TextDefault>Page </TextDefault>
         <TextDefault color="gradient">1 of 2</TextDefault>
       </p>
       <PagerButton isDisabled={disabledRight}>
-        <PagerIcon isDisabled={disabledRight} rotation="0deg" src={arrow.src} variant="Desktop" />
+        <PagerIcon $isdisabled={disabledRight} rotation="0deg" src={arrow.src} variant="Desktop" />
       </PagerButton>
     </Wrapper>
   );

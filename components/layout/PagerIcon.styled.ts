@@ -6,14 +6,14 @@ import {Colors} from "../../styles/Theme";
 interface Props {
   variant: string;
   rotation: string;
-  isDisabled?: boolean;
+  $isdisabled?: boolean;
 }
 
 export const PagerIcon = styled(SVG)<Props>`
   transform: rotate(${(props) => props.rotation});
 
   > path {
-    stroke: ${(p) => (p.isDisabled ? Colors.Neutral[300] : "")};
+    stroke: ${(p) => (p.$isdisabled ? Colors.Neutral[300] : "")};
   }
 
   ${(p) => {
