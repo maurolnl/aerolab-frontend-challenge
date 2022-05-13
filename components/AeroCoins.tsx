@@ -57,7 +57,7 @@ const PaymentBox = styled.div`
 const AeroCoins = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
-  const {user} = useUser();
+  const {user, error} = useUser();
 
   const handleClose = () => {
     setOpen(false);
@@ -68,7 +68,7 @@ const AeroCoins = () => {
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
           <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
-          <CoinAmount>{user ? user.points : 0}</CoinAmount>
+          <CoinAmount>{user ? user.points : error ? 0 : 0}</CoinAmount>
         </Wrapper>
         <DropdownIcon
           rotation={isOpen ? "90deg" : "-90deg"}
