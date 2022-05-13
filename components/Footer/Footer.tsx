@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import styled from "styled-components";
 
 import {Colors, TextStyles} from "../../styles/Theme";
-import github_icon_default from "../../../assets/icons/github-default.svg";
-import github_icon_active from "../../../assets/icons/github-active.svg";
+import github_icon_default from "../../assets/icons/github-default.svg";
+import github_icon_active from "../../assets/icons/github-active.svg";
 import {Icon} from "../layout/AeroPayIcon.styled";
 import {device} from "../media/media";
 import useMedia from "../layout/hooks";

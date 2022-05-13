@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
-import aeropay_icon from "../assets/icons/aeropay-1.svg"; //"../assets/icons/aeropay-1.svg";
-import arrow from "../../assets/icons/chevron-default.svg";
+import aeropay_icon from "../assets/icons/aeropay-1.svg";
+import arrow from "../assets/icons/chevron-default.svg";
 import {Colors, Shadows, TextStyles} from "../styles/Theme";
 
 import {DropdownIcon} from "./layout/DropdownIcon.styled";

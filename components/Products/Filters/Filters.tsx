@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Divider_115 from "../../../../assets/icons/Divider_115.svg";
+import Divider_115 from "../../../assets/icons/Divider_115.svg";
 import ClientOnly from "../../ClientOnly";
 import {Divider} from "../../layout/Divider.styled";
 import useMedia from "../../layout/hooks";

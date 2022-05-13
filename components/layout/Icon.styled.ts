@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import SVG from "react-inlinesvg";
 
-import {Colors} from "../../styles/Theme";
-
 interface Props {
   variant?: string;
   rotation?: string;

@@ -3,18 +3,18 @@ import styled from "styled-components";
 import Image from "next/image";
 
 import {Colors} from "../../styles/Theme";
-import aerolab_walkthrough1_desktop from "../../../assets/illustrations/walkthroug-1-desktop.png";
-import aerolab_walkthrough1_mobile from "../../../assets/illustrations/walkthroug-1-responsive.png";
-import aerolab_walkthrough3 from "../../../assets/icons/walkthrough-3.svg";
-import aerolab_walkthrough2_desktop from "../../../assets/illustrations/walkthroug-2-desktop.png";
-import aerolab_walkthrough2_mobile from "../../../assets/illustrations/walkthroug-2-responsive.png";
-import aerolab_walkthrough2 from "../../../assets/icons/walkthrough-2.svg";
-import aerolab_walkthrough3_desktop from "../../../assets/illustrations/walkthroug-3-desktop.png";
-import aerolab_walkthrough3_mobile from "../../../assets/illustrations/walkthroug-3-responsive.png";
-import aerolab_walkthrough1 from "../../../assets/icons/walkthrough-1.svg";
+import aerolab_walkthrough1_desktop from "../../assets/illustrations/walkthroug-1-desktop.png";
+import aerolab_walkthrough1_mobile from "../../assets/illustrations/walkthroug-1-responsive.png";
+import aerolab_walkthrough3 from "../../assets/icons/walkthrough-3.svg";
+import aerolab_walkthrough2_desktop from "../../assets/illustrations/walkthroug-2-desktop.png";
+import aerolab_walkthrough2_mobile from "../../assets/illustrations/walkthroug-2-responsive.png";
+import aerolab_walkthrough2 from "../../assets/icons/walkthrough-2.svg";
+import aerolab_walkthrough3_desktop from "../../assets/illustrations/walkthroug-3-desktop.png";
+import aerolab_walkthrough3_mobile from "../../assets/illustrations/walkthroug-3-responsive.png";
+import aerolab_walkthrough1 from "../../assets/icons/walkthrough-1.svg";
 import {Container} from "../layout/Container.styled";
 import {device} from "../media/media";
-import aerolab_sally_responsive from "../../../assets/illustrations/hero-responsive.png";
+import aerolab_sally_responsive from "../../assets/illustrations/hero-responsive.png";
 import ClientOnly from "../ClientOnly";
 
 import WalkthroughCard, {ICard} from "./WalkthroughCard";

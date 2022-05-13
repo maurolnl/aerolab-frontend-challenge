@@ -6,9 +6,9 @@ import {Icon} from "../layout/AeroPayIcon.styled";
 import {ButtonClose} from "../layout/Button/ButtonClose.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
-import aeropay_3 from "../../../assets/icons/aeropay-3.svg";
-import close_icon from "../../../assets/icons/cross-default.svg";
-import close_icon_active from "../../../assets/icons/cross-active.svg";
+import aeropay_3 from "../../assets/icons/aeropay-3.svg";
+import close_icon from "../../assets/icons/cross-default.svg";
+import close_icon_active from "../../assets/icons/cross-active.svg";
 import ToggleGroup from "../layout/ToggleGroup";
 
 import AeroCard from "./AeroCard";

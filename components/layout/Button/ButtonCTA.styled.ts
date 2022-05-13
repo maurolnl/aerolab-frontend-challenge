@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 import {Colors, Shadows, TextStyles} from "../../../styles/Theme";

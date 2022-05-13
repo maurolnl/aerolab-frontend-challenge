@@ -2,13 +2,13 @@ import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
 
-import aerolab_hero_illustration from "../../../assets/illustrations/hero-desktop.png";
+import aerolab_hero_illustration from "../../assets/illustrations/hero-desktop.png";
 import {ArrowIcon} from "../layout/ArrowIcon.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {Stack} from "../layout/Stack.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TitleL1} from "../layout/Title/TitleL1.styled";
-import arrow_icon from "../../../assets/icons/arrow.svg";
+import arrow_icon from "../../assets/icons/arrow.svg";
 import {Colors} from "../../styles/Theme";
 import {device} from "../media/media";
 import useMedia from "../layout/hooks";

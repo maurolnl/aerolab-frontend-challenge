@@ -2,9 +2,8 @@ import Image from "next/image";
 import {useState} from "react";
 import styled from "styled-components";
 
-import aeropay_icon from "../../../assets/icons/aeropay-3.svg";
-import aeropay_icon_disabled from "../../../assets/icons/aeropay-2.svg";
-import product_image from "../../../assets/product.png";
+import aeropay_icon from "../../assets/icons/aeropay-3.svg";
+import product_image from "../../assets/product.png";
 import {Colors, Shadows} from "../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
