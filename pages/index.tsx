@@ -1,4 +1,4 @@
-import type {NextPage} from "next";
+import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
 
 import {GlobalStyle} from "../styles/Global";
@@ -9,12 +9,17 @@ import useMedia from "../components/layout/hooks";
 import {Stack} from "../components/layout/Stack.styled";
 import ProductSection from "../components/Products/ProductSection";
 import Walkthrough from "../components/Walkthrough/Walkthrough";
+import {ProvideAuth} from "../components/User/context";
 
-const Home: NextPage = () => {
+interface Props {
+  user: string;
+}
+
+const Home: NextPage<Props> = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
-    <>
+    <ProvideAuth>
       <GlobalStyle />
       <Head>
         <title>Aerolab frontend challenge</title>
@@ -38,8 +43,14 @@ const Home: NextPage = () => {
           </Stack>
         </Stack>
       </ClientOnly>
-    </>
+    </ProvideAuth>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  };
 };
 
 export default Home;
