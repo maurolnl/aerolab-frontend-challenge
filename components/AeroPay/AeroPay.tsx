@@ -10,6 +10,7 @@ import aeropay_3 from "../../assets/icons/aeropay-3.svg";
 import close_icon from "../../assets/icons/cross-default.svg";
 import close_icon_active from "../../assets/icons/cross-active.svg";
 import ToggleGroup from "../layout/ToggleGroup";
+import {useUser} from "../User/context";
 
 import AeroCard from "./AeroCard";
 
@@ -56,8 +57,23 @@ interface Props {
 
 const AeroPay: React.FC<Props> = ({onClose}) => {
   const [isActive, setActive] = useState<boolean>(false);
+  const [activeButton, setActiveButton] = useState<number>(1);
+  const [isLoading, setLoading] = useState<boolean>(false);
+
+  const {handleAddPoints} = useUser();
 
   const AMOUNTS = [1000, 5000, 7500];
+
+  const handleChange = (index: number) => {
+    setActiveButton(index);
+  };
+
+  const handleClick = async () => {
+    setLoading(true);
+    const response = await handleAddPoints(AMOUNTS[activeButton]);
+
+    setLoading(false);
+  };
 
   return (
     <Wrapper>
@@ -75,8 +91,14 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
       <Content>
         <AeroCard />
         <AmountAndButtonWrapper>
-          <ToggleGroup h={"35px"} labels={AMOUNTS} selectButtonIndex={1} w={"100%"} />
-          <ButtonCTA h="51px" mt="0px" textVariant="AllCaps" w="100%">
+          <ToggleGroup
+            callback={handleChange}
+            h={"35px"}
+            labels={AMOUNTS}
+            selectButtonIndex={1}
+            w={"100%"}
+          />
+          <ButtonCTA h="51px" mt="0px" textVariant="AllCaps" w="100%" onClick={handleClick}>
             <Icon src={aeropay_3.src} variant="Mobile" />
             <TextDefault color={"100"} ml={"8px"}>
               Add Points

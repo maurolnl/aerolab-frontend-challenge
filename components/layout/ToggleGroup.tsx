@@ -31,10 +31,28 @@ interface Props {
   h?: string;
   w?: string;
   display?: string;
+  callback?: (index: number) => void;
 }
 
-const Index: React.FC<Props> = ({labels, selectButtonIndex, gap, padding, w, h, display}) => {
+const Index: React.FC<Props> = ({
+  labels,
+  selectButtonIndex,
+  gap,
+  padding,
+  w,
+  h,
+  display,
+  callback,
+}) => {
   const [active, setActive] = useState<number>(selectButtonIndex ? selectButtonIndex : 0);
+
+  const handleClick = (index: number) => {
+    setActive(index);
+
+    if (callback) {
+      callback(index);
+    }
+  };
 
   return (
     <ToggleWrapper display={display} gap={gap}>
@@ -46,7 +64,7 @@ const Index: React.FC<Props> = ({labels, selectButtonIndex, gap, padding, w, h, 
             isActive={index === active ? true : false}
             padding={padding}
             w={w}
-            onClick={() => setActive(index)}
+            onClick={() => handleClick(index)}
           >
             <p>{label}</p>
           </ButtonSelector>

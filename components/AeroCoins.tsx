@@ -10,6 +10,7 @@ import {Icon} from "./layout/AeroPayIcon.styled";
 import AeroPay from "./AeroPay/AeroPay";
 import {device} from "./media/media";
 import useMedia from "./layout/hooks";
+import {useUser} from "./User/context";
 
 const CoinAmount = styled.p`
   margin-left: 8px;
@@ -56,6 +57,7 @@ const PaymentBox = styled.div`
 const AeroCoins = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+  const {user} = useUser();
 
   const handleClose = () => {
     setOpen(false);
@@ -66,7 +68,7 @@ const AeroCoins = () => {
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
           <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
-          <CoinAmount>1000</CoinAmount>
+          <CoinAmount>{user ? user.points : 0}</CoinAmount>
         </Wrapper>
         <DropdownIcon
           rotation={isOpen ? "90deg" : "-90deg"}
