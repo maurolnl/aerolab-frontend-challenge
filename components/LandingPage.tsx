@@ -3,7 +3,7 @@ import React from "react";
 import ClientOnly from "./ClientOnly";
 import Hero from "./Hero/Hero";
 import {Container} from "./layout/Container.styled";
-import useMedia from "./layout/hooks";
+import {useMedia} from "./layout/hooks";
 import {Stack} from "./layout/Stack.styled";
 import Navbar from "./Navbar/Navbar";
 

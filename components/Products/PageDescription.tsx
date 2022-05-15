@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import useMedia from "../layout/hooks";
+import {useMedia} from "../layout/hooks";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {device} from "../media/media";
 

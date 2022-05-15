@@ -5,7 +5,7 @@ import {GlobalStyle} from "../styles/Global";
 import ClientOnly from "../components/ClientOnly";
 import Footer from "../components/Footer/Footer";
 import LandingPage from "../components/LandingPage";
-import useMedia from "../components/layout/hooks";
+import {useMedia} from "../components/layout/hooks";
 import {Stack} from "../components/layout/Stack.styled";
 import ProductSection from "../components/Products/ProductSection";
 import Walkthrough from "../components/Walkthrough/Walkthrough";

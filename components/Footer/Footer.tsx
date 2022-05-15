@@ -6,7 +6,7 @@ import github_icon_default from "../../assets/icons/github-default.svg";
 import github_icon_active from "../../assets/icons/github-active.svg";
 import {Icon} from "../layout/AeroPayIcon.styled";
 import {device} from "../media/media";
-import useMedia from "../layout/hooks";
+import {useMedia} from "../layout/hooks";
 
 const Wrapper = styled.footer`
   display: flex;

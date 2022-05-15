@@ -9,7 +9,7 @@ import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TextL2Default} from "../layout/Text/TextL2Default.styled";
 import {device} from "../media/media";
-import useMedia from "../layout/hooks";
+import {useMedia} from "../layout/hooks";
 
 import {Images} from "./types";
 

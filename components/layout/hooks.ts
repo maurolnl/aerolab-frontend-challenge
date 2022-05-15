@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const useMedia = (queries: string[], values: boolean[], defaultValue = false) => {
+export const useMedia = (queries: string[], values: boolean[], defaultValue = false) => {
   const mediaQueryLists: any[] = queries.map((q) =>
     typeof window !== "undefined" ? window.matchMedia(q) : false,
   );
@@ -27,5 +27,3 @@ const useMedia = (queries: string[], values: boolean[], defaultValue = false) =>
 
   return value;
 };
-
-export default useMedia;

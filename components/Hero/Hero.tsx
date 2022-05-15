@@ -11,7 +11,7 @@ import {TitleL1} from "../layout/Title/TitleL1.styled";
 import arrow_icon from "../../assets/icons/arrow.svg";
 import {Colors} from "../../styles/Theme";
 import {device} from "../media/media";
-import useMedia from "../layout/hooks";
+import {useMedia} from "../layout/hooks";
 import ClientOnly from "../ClientOnly";
 
 const Wrapper = styled.section`

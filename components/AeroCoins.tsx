@@ -9,7 +9,7 @@ import {DropdownIcon} from "./layout/DropdownIcon.styled";
 import {Icon} from "./layout/AeroPayIcon.styled";
 import AeroPay from "./AeroPay/AeroPay";
 import {device} from "./media/media";
-import useMedia from "./layout/hooks";
+import {useMedia} from "./layout/hooks";
 import {useUser} from "./User/context";
 
 const CoinAmount = styled.p`

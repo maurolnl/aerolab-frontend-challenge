@@ -6,7 +6,7 @@ import {Colors, TextStyles} from "../../../styles/Theme";
 import {TextDefault} from "../../layout/Text/TextDefault.styled";
 import select_icon from "../../../assets/icons/selector_icon.svg";
 import {SelectIcon} from "../../layout/SelectorIcon.styled";
-import useMedia from "../../layout/hooks";
+import {useMedia} from "../../layout/hooks";
 import ClientOnly from "../../ClientOnly";
 import {device} from "../../media/media";
 

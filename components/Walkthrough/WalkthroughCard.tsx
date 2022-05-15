@@ -7,7 +7,7 @@ import {Icon} from "../layout/Icon.styled";
 import {TitleL3} from "../layout/Title/TitleL3.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {device} from "../media/media";
-import useMedia from "../layout/hooks";
+import {useMedia} from "../layout/hooks";
 
 const Wrapper = styled.article`
   height: 477px;

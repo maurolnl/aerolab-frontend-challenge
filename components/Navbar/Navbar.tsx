@@ -4,7 +4,7 @@ import Image from "next/image";
 import aerolab_logo from "../../assets/icons/aerolab-logo-1.svg";
 import aerolab_logo_mobile from "../../assets/icons/aerolab-logo-2.svg";
 import AeroCoins from "../AeroCoins";
-import useMedia from "../layout/hooks";
+import {useMedia} from "../layout/hooks";
 import ClientOnly from "../ClientOnly";
 
 import {StyledNavbar} from "./Navbar.styled";
