@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "custom.d.ts", "components/AeroCoins.tsx", "pages/_document.js",
+    "custom.d.ts", "components/AeroCoins.tsx", "pages/_document.js", "components/utils/fetcher.js",
   ],
   "exclude": [
     "node_modules"
