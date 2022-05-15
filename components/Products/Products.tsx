@@ -1,11 +1,11 @@
-import React from "react";
+import {useRouter} from "next/router";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 import {device} from "../media/media";
-import {fetcher} from "../utils/fetcher";
 
-import {useProducts} from "./hooks";
 import Product from "./Product";
+import {IProduct} from "./types";
 
 const Grid = styled.div`
   display: grid;
@@ -31,24 +31,36 @@ const Grid = styled.div`
   }
 `;
 
-const Products = () => {
-  const {products, isLoading} = useProducts();
+interface Props {
+  products: IProduct[];
+}
+const Products: React.FC<Props> = ({products}) => {
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const limitPerPage = 16; //TODO: make it depend on useMedia() <- if desktop then 16, if tablet or mobile then 8.
+  const offset = (pageNumber - 1) * limitPerPage;
 
-  if (isLoading) {
-    return <p>Loading ...</p>;
-  }
+  const router = useRouter();
+  const {page} = router.query;
+
+  useEffect(() => {
+    if (page) {
+      setPageNumber(Number(page));
+    }
+  }, [page]);
 
   return (
     <Grid>
-      {products.map((product) => {
-        return (
-          <Product
-            key={product.productId}
-            category={product.category}
-            images={product.img}
-            name={product.name}
-          />
-        );
+      {products.map((product, index) => {
+        if (index >= offset && index < limitPerPage + offset)
+          return (
+            <Product
+              key={product._id}
+              category={product.category}
+              images={product.img}
+              name={product.name}
+              price={product.cost}
+            />
+          );
       })}
     </Grid>
   );

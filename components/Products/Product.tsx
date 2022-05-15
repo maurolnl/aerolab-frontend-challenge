@@ -3,7 +3,6 @@ import {useState} from "react";
 import styled from "styled-components";
 
 import aeropay_icon from "../../assets/icons/aeropay-3.svg";
-import product_image from "../../assets/product.png";
 import {Colors, Shadows} from "../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
 import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
@@ -84,10 +83,11 @@ const Center = styled.div`
 interface Props {
   name: string;
   category: string;
+  price: number;
   images: Images;
 }
 
-const Product: React.FC<Props> = ({name, category, images}) => {
+const Product: React.FC<Props> = ({name, category, images, price}) => {
   const [isProcessing, setProcessing] = useState<boolean>(false);
   const [isDisabled, setDisabled] = useState<boolean>(false);
   const isMobileS = useMedia(["(max-width: 620px)"], [true]);
@@ -103,6 +103,7 @@ const Product: React.FC<Props> = ({name, category, images}) => {
             <Image
               alt={"product image"}
               height={204}
+              loading="lazy"
               objectFit={"cover"}
               src={images.hdUrl}
               width={280}
@@ -125,7 +126,7 @@ const Product: React.FC<Props> = ({name, category, images}) => {
           "Processing..."
         ) : (
           <span>
-            Redeem for <Icon src={aeropay_icon.src} valign="middle" variant={iconVariant} /> 12.500
+            Redeem for <Icon src={aeropay_icon.src} valign="middle" variant={iconVariant} /> {price}
           </span>
         )}
       </ButtonCTA>
