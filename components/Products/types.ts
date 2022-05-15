@@ -4,7 +4,6 @@ export interface Images {
 }
 
 export interface IProduct {
-  productId: string;
   name: string;
   cost: number;
   category: string;
