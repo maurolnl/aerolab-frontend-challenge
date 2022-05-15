@@ -12,6 +12,8 @@ import {TextL2Default} from "../layout/Text/TextL2Default.styled";
 import {device} from "../media/media";
 import useMedia from "../layout/hooks";
 
+import {Images} from "./types";
+
 const ProductWrapper = styled.article`
   display: flex;
   flex-direction: column;
@@ -81,11 +83,11 @@ const Center = styled.div`
 
 interface Props {
   name: string;
-  description: string;
-  image: string;
+  category: string;
+  images: Images;
 }
 
-const Product: React.FC<Props> = ({name, description, image}) => {
+const Product: React.FC<Props> = ({name, category, images}) => {
   const [isProcessing, setProcessing] = useState<boolean>(false);
   const [isDisabled, setDisabled] = useState<boolean>(false);
   const isMobileS = useMedia(["(max-width: 620px)"], [true]);
@@ -102,14 +104,14 @@ const Product: React.FC<Props> = ({name, description, image}) => {
               alt={"product image"}
               height={204}
               objectFit={"cover"}
-              src={product_image.src}
+              src={images.hdUrl}
               width={280}
             />
           </ImageWrapper>
         </Center>
         <ProductDetail>
-          <TextDefault color="900">Product name</TextDefault>
-          <TextL2Default variant="AllCaps">Product type</TextL2Default>
+          <TextDefault color="900">{name}</TextDefault>
+          <TextL2Default variant="AllCaps">{category}</TextL2Default>
         </ProductDetail>
       </ProductCard>
       <ButtonCTA borderRadius="16px" h="59px" variant={buttonVariant} w="100%">

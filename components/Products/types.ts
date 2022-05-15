@@ -1,3 +1,8 @@
+export interface Images {
+  url: string;
+  hdUrl: string;
+}
+
 export interface IProduct {
   productId: string;
   name: string;
@@ -5,8 +10,5 @@ export interface IProduct {
   category: string;
   _id: string;
   createDate: string;
-  img: {
-    url: string;
-    hdUrl: string;
-  };
+  img: Images;
 }

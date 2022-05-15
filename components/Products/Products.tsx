@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import {device} from "../media/media";
+import {fetcher} from "../utils/fetcher";
 
+import {useProducts} from "./hooks";
 import Product from "./Product";
 
 const Grid = styled.div`
@@ -30,15 +32,24 @@ const Grid = styled.div`
 `;
 
 const Products = () => {
+  const {products, isLoading} = useProducts();
+
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
+
   return (
     <Grid>
-      <Product description="" image="" name="" />
-      <Product description="" image="" name="" />
-      <Product description="" image="" name="" />
-      <Product description="" image="" name="" />
-      <Product description="" image="" name="" />
-      <Product description="" image="" name="" />
-      <Product description="" image="" name="" />
+      {products.map((product) => {
+        return (
+          <Product
+            key={product.productId}
+            category={product.category}
+            images={product.img}
+            name={product.name}
+          />
+        );
+      })}
     </Grid>
   );
 };
