@@ -29,7 +29,7 @@ export default {
         Accept: "application/json",
         Authorization: process.env.NEXT_PUBLIC_AEROLAB_PRIVATE_TOKEN as string,
       },
-      body: JSON.stringify(amount),
+      body: JSON.stringify({amount: amount}),
     })
       .then((response) => response.json())
       .catch((e) => e.error);
