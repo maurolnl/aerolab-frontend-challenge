@@ -10,12 +10,14 @@ import {Stack} from "../components/layout/Stack.styled";
 import ProductSection from "../components/Products/ProductSection";
 import Walkthrough from "../components/Walkthrough/Walkthrough";
 import {ProvideAuth} from "../components/User/context";
+import {IProduct} from "../components/Products/types";
+import api from "../components/Products/api";
 
 interface Props {
-  user: string;
+  products: IProduct[];
 }
 
-const Home: NextPage<Props> = () => {
+const Home: NextPage<Props> = ({products}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
@@ -38,7 +40,7 @@ const Home: NextPage<Props> = () => {
           <LandingPage />
           <Stack direction="column" gap="160px">
             <Walkthrough />
-            <ProductSection />
+            <ProductSection products={products} />
             <Footer />
           </Stack>
         </Stack>
@@ -48,8 +50,12 @@ const Home: NextPage<Props> = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const products = await api.getAllProducts();
+
   return {
-    props: {},
+    props: {
+      products,
+    },
   };
 };
 

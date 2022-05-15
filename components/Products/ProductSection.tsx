@@ -8,6 +8,7 @@ import {device} from "../media/media";
 import Filters from "./Filters/Filters";
 import PageDescription from "./PageDescription";
 import Products from "./Products";
+import {IProduct} from "./types";
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -36,7 +37,10 @@ const TitleWrapper = styled.div`
   gap: 5px;
 `;
 
-const ProductSection = () => {
+interface Props {
+  products: IProduct[];
+}
+const ProductSection: React.FC<Props> = ({products}) => {
   return (
     <Container>
       <SectionWrapper>
@@ -51,7 +55,7 @@ const ProductSection = () => {
           </TitleWrapper>
           <Filters />
         </HeaderWrapper>
-        <Products />
+        <Products products={products} />
         <PageDescription />
       </SectionWrapper>
     </Container>
