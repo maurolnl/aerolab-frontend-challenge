@@ -1,6 +1,5 @@
 import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
-import {SWRConfig} from "swr";
 
 import {GlobalStyle} from "../styles/Global";
 import ClientOnly from "../components/ClientOnly";
@@ -11,14 +10,12 @@ import {Stack} from "../components/layout/Stack.styled";
 import ProductSection from "../components/Products/ProductSection";
 import Walkthrough from "../components/Walkthrough/Walkthrough";
 import {ProvideAuth} from "../components/User/context";
-import api from "../components/Products/api";
-import {IProduct} from "../components/Products/types";
 
 interface Props {
-  fallback: IProduct[];
+  user: string;
 }
 
-const Home: NextPage<Props> = ({fallback}) => {
+const Home: NextPage<Props> = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
@@ -41,9 +38,7 @@ const Home: NextPage<Props> = ({fallback}) => {
           <LandingPage />
           <Stack direction="column" gap="160px">
             <Walkthrough />
-            <SWRConfig value={{fallback}}>
-              <ProductSection />
-            </SWRConfig>
+            <ProductSection />
             <Footer />
           </Stack>
         </Stack>
@@ -53,14 +48,8 @@ const Home: NextPage<Props> = ({fallback}) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await api.getAllProducts();
-
   return {
-    props: {
-      fallback: {
-        "https://private-anon-c695ebc5f5-aerolabchallenge.apiary-proxy.com/products": products,
-      },
-    },
+    props: {},
   };
 };
 
