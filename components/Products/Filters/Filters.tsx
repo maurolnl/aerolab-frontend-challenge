@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 import Divider_115 from "../../../assets/icons/Divider_115.svg";
+import {SORT_TYPES} from "../../../constants";
 import ClientOnly from "../../ClientOnly";
 import {Divider} from "../../layout/Divider.styled";
 import {useMedia} from "../../layout/hooks";
 import {Stack} from "../../layout/Stack.styled";
 import ToggleGroup from "../../layout/ToggleGroup";
 import {device} from "../../media/media";
+import {useFilters} from "../context";
 
 import CategoryFilter from "./CategoryFilter";
 import Pager from "./Pager";
@@ -40,7 +42,7 @@ const CategoryAndSortWrapper = styled.div`
 const Filters = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
   const isMobile = useMedia(["(max-width: 1023px)"], [true]);
-  const sortTypes = ["Most Recent", "Lowest Price", "Highest Price"];
+  const {handleSortChange} = useFilters();
 
   return (
     <ClientOnly>
@@ -54,9 +56,10 @@ const Filters = () => {
           <Pager display={isMobile ? "none" : "flex"} />
         </Wrapper>
         <ToggleGroup
+          callback={handleSortChange}
           display={isDesktop ? "none" : "flex"}
           gap="12px"
-          labels={sortTypes}
+          labels={SORT_TYPES}
           padding="8px 24px"
         />
       </Stack>

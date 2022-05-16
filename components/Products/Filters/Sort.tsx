@@ -4,6 +4,8 @@ import styled from "styled-components";
 import {TextDefault} from "../../layout/Text/TextDefault.styled";
 import ToggleGroup from "../../layout/ToggleGroup";
 import {device} from "../../media/media";
+import {SORT_TYPES} from "../../../constants";
+import {useFilters} from "../context";
 
 const Wrapper = styled.div`
   display: none;
@@ -19,12 +21,12 @@ const Wrapper = styled.div`
 `;
 
 const Sort = () => {
-  const sortTypes = ["Most Recent", "Lowest Price", "Highest Price"];
+  const {handleSortChange} = useFilters();
 
   return (
     <Wrapper>
       <TextDefault whiteSpace="nowrap">Sort by: </TextDefault>
-      <ToggleGroup gap="12px" labels={sortTypes} padding="8px 24px" />
+      <ToggleGroup callback={handleSortChange} gap="12px" labels={SORT_TYPES} padding="8px 24px" />
     </Wrapper>
   );
 };

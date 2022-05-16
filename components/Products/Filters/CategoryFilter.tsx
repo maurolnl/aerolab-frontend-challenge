@@ -9,6 +9,7 @@ import {SelectIcon} from "../../layout/SelectorIcon.styled";
 import {useMedia} from "../../layout/hooks";
 import ClientOnly from "../../ClientOnly";
 import {device} from "../../media/media";
+import {useFilters} from "../context";
 
 const DropdownIndicator = (props: any) => {
   return (
@@ -58,10 +59,17 @@ const CategoryFilter = () => {
 
   const options = [
     {value: "all_products", label: "All Products"},
+    {value: "phones", label: "Phones"},
+    {value: "tablets_ereaders", label: "Tablets & E-readers"},
+    {value: "phone_accessories", label: "Phone Accessories"},
+    {value: "pc_accessories", label: "PC Accessories"},
     {value: "gaming", label: "Gaming"},
+    {value: "laptops", label: "Laptops"},
+    {value: "cameras", label: "Cameras"},
     {value: "audio", label: "Audio"},
     {value: "smart_home", label: "Smart Home"},
     {value: "monitors_tv", label: "Monitors & TV"},
+    {value: "drones", label: "Drones"},
   ];
 
   interface Props {
@@ -119,16 +127,20 @@ const CategoryFilter = () => {
     },
   };
 
+  const {handleFilterChange} = useFilters();
+
   return (
     <Wrapper>
       <ClientOnly>
         <TextDefault display={isDesktop ? "" : "none"}>Filter by: </TextDefault>
         <Select
           components={{DropdownIndicator, IndicatorSeparator: () => null}}
+          defaultValue={options[0]}
           isSearchable={false}
           options={options}
           placeholder="All Products"
           styles={customStyles}
+          onChange={(value) => handleFilterChange(value?.label)}
         />
       </ClientOnly>
     </Wrapper>

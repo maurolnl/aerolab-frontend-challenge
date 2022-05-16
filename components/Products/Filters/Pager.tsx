@@ -5,6 +5,7 @@ import {Colors} from "../../../styles/Theme";
 import {PagerIcon} from "../../layout/PagerIcon.styled";
 import arrow from "../../../assets/icons/chevron-default.svg";
 import {TextDefault} from "../../layout/Text/TextDefault.styled";
+import {useFilters} from "../context";
 
 const Wrapper = styled.div<{display?: string}>`
   display: flex;
@@ -50,17 +51,20 @@ interface Props {
 const Pager: React.FC<Props> = ({display}) => {
   const [disabledLeft, setDisabledLeft] = useState<boolean>(true);
   const [disabledRight, setDisabledRight] = useState<boolean>(false);
+  const {page, handleNextPage, handlePreviousPage, totalPages} = useFilters();
 
   return (
     <Wrapper display={display}>
-      <PagerButton isDisabled={disabledLeft}>
+      <PagerButton isDisabled={disabledLeft} onClick={handlePreviousPage}>
         <PagerIcon $isdisabled={disabledLeft} rotation="180deg" src={arrow.src} variant="Desktop" />
       </PagerButton>
       <p>
         <TextDefault>Page </TextDefault>
-        <TextDefault color="gradient">1 of 2</TextDefault>
+        <TextDefault color="gradient">
+          {page} of {totalPages}
+        </TextDefault>
       </p>
-      <PagerButton isDisabled={disabledRight}>
+      <PagerButton isDisabled={disabledRight} onClick={handleNextPage}>
         <PagerIcon $isdisabled={disabledRight} rotation="0deg" src={arrow.src} variant="Desktop" />
       </PagerButton>
     </Wrapper>
