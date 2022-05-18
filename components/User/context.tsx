@@ -16,7 +16,7 @@ interface Context {
 
 const userContext = createContext({} as Context);
 
-export const ProvideAuth: React.FC = ({children}) => {
+export const ProvideUser: React.FC = ({children}) => {
   const user = useProvideUser();
 
   return <userContext.Provider value={user}>{children}</userContext.Provider>;
