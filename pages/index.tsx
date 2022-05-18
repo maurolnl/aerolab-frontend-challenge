@@ -9,9 +9,10 @@ import {useMedia} from "../components/layout/hooks";
 import {Stack} from "../components/layout/Stack.styled";
 import ProductSection from "../components/Products/ProductSection";
 import Walkthrough from "../components/Walkthrough/Walkthrough";
-import {ProvideAuth} from "../components/User/context";
+import {ProvideUser} from "../components/User/context";
 import {IProduct} from "../components/Products/types";
 import api from "../components/Products/api";
+import {ProvideFilters} from "../components/Products/context";
 
 interface Props {
   products: IProduct[];
@@ -21,7 +22,7 @@ const Home: NextPage<Props> = ({products}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
-    <ProvideAuth>
+    <ProvideUser>
       <GlobalStyle />
       <Head>
         <title>Aerolab frontend challenge</title>
@@ -40,12 +41,14 @@ const Home: NextPage<Props> = ({products}) => {
           <LandingPage />
           <Stack direction="column" gap="160px">
             <Walkthrough />
-            <ProductSection products={products} />
+            <ProvideFilters>
+              <ProductSection products={products} />
+            </ProvideFilters>
             <Footer />
           </Stack>
         </Stack>
       </ClientOnly>
-    </ProvideAuth>
+    </ProvideUser>
   );
 };
 
