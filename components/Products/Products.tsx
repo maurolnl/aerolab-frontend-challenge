@@ -1,9 +1,10 @@
-import {useRouter} from "next/router";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 
+import {PRODUCTS_CATEGORIES, SORT_TYPES} from "../../constants";
 import {device} from "../media/media";
 
+import {useFilters} from "./context";
 import Product from "./Product";
 import {IProduct} from "./types";
 
@@ -35,33 +36,46 @@ interface Props {
   products: IProduct[];
 }
 const Products: React.FC<Props> = ({products}) => {
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const limitPerPage = 16; //TODO: make it depend on useMedia() <- if desktop then 16, if tablet or mobile then 8.
-  const offset = (pageNumber - 1) * limitPerPage;
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>();
+  const {page, limit, sort, filter, handleTotalChange, total} = useFilters();
+  const offset = (page - 1) * limit;
 
-  const router = useRouter();
-  const {page} = router.query;
+  const filterByAllProducts = PRODUCTS_CATEGORIES[0];
+  const filterByPCAccessories = PRODUCTS_CATEGORIES[1];
 
   useEffect(() => {
-    if (page) {
-      setPageNumber(Number(page));
-    }
-  }, [page]);
+    const newProducts = products.filter((product) => {
+      if (filter === filterByAllProducts) return true;
+      else if (filter === filterByPCAccessories) {
+        if (product.category === filter || product.category === "PC Accesories") return true; //this is because a misspelling on the fetched product's categories
+      } else if (product.category === filter) {
+        return true;
+      }
+
+      return false;
+    });
+
+    handleTotalChange(newProducts.length);
+    setFilteredProducts(newProducts);
+  }, [filter]);
+
+  console.log(total);
 
   return (
     <Grid>
-      {products.map((product, index) => {
-        if (index >= offset && index < limitPerPage + offset)
-          return (
-            <Product
-              key={product._id}
-              category={product.category}
-              images={product.img}
-              name={product.name}
-              price={product.cost}
-            />
-          );
-      })}
+      {filteredProducts &&
+        filteredProducts.map((product, index) => {
+          if (index >= offset && index < limit + offset)
+            return (
+              <Product
+                key={product._id}
+                category={product.category}
+                images={product.img}
+                name={product.name}
+                price={product.cost}
+              />
+            );
+        })}
     </Grid>
   );
 };
