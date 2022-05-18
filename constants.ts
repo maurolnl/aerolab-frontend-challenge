@@ -2,10 +2,10 @@ export const PRODUCT_QUANTITY = 32;
 export const SORT_TYPES = ["Most Recent", "Lowest Price", "Highest Price"];
 export const PRODUCTS_CATEGORIES = [
   "All Products",
+  "PC Accessories",
   "Phones",
   "Tablets & E-readers",
   "Phone Accessories",
-  "PC Accessories",
   "Gaming",
   "Laptops",
   "Cameras",
