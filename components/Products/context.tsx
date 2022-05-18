@@ -13,6 +13,8 @@ interface Context {
   handleSortChange: (index: number) => void;
   filter: string;
   handleFilterChange: (index: string | undefined) => void;
+  total: number;
+  handleTotalChange: (newTotal: number) => void;
 }
 
 const filterContext = createContext({} as Context);
@@ -28,6 +30,7 @@ export const useFilters = () => {
 };
 
 const useProvideFilters = () => {
+  const [total, setTotal] = useState<number>(32);
   const [sort, setSort] = useState<string>(SORT_TYPES[0]);
   const [filter, setFilter] = useState<string>("All Products");
   const {page, handleNextPage, handlePreviousPage, handleNavigate} = usePager();
@@ -51,6 +54,10 @@ const useProvideFilters = () => {
     if (label) setFilter(label);
   };
 
+  const handleTotalChange = (newTotal: number) => {
+    setTotal(newTotal);
+  };
+
   return {
     page,
     handleNextPage,
@@ -61,5 +68,7 @@ const useProvideFilters = () => {
     handleSortChange,
     filter,
     handleFilterChange,
+    total,
+    handleTotalChange,
   };
 };
