@@ -1,3 +1,5 @@
+import {PROD_URL} from "../../constants";
+
 import {IUser} from "./types";
 
 export interface INewPoints {
@@ -5,12 +7,10 @@ export interface INewPoints {
   "New Points": number;
 }
 
-const prod_url = "https://coding-challenge-api.aerolab.co";
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getUser: async (): Promise<IUser> => {
-    return fetch(`${prod_url}/user/me`, {
+    return fetch(`${PROD_URL}user/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export default {
       .catch((e) => e.message);
   },
   addPoints: async (amount: number): Promise<INewPoints> => {
-    return fetch(`${prod_url}/user/points`, {
+    return fetch(`${PROD_URL}user/points`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

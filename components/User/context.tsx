@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext} from "react";
+import {mutate} from "swr";
+
+import {PROD_URL} from "../../constants";
 
 import api, {INewPoints} from "./api";
+import {useUserInfo} from "./hooks";
 import {IUser} from "./types";
 
 export interface Error {
@@ -9,7 +13,8 @@ export interface Error {
   message: string;
 }
 interface Context {
-  user: IUser | undefined;
+  user: IUser;
+  isLoading: boolean;
   error: Error | undefined;
   handleAddPoints: (amount: number) => Promise<boolean>;
 }
@@ -27,19 +32,15 @@ export const useUser = () => {
 };
 
 function useProvideUser() {
-  const [user, setUser] = useState<IUser>();
-  const [error, setError] = useState<Error>();
+  const {user, isLoading, error} = useUserInfo();
 
   const handleAddPoints = async (amount: number) => {
-    let newPoints: INewPoints | undefined;
-
-    if (!user) return false;
-
     try {
-      newPoints = await api.addPoints(amount);
-      console.log(newPoints);
+      await api.addPoints(amount);
 
-      setUser({...user, points: newPoints["New Points"]});
+      mutate(`${PROD_URL}user/me`);
+
+      return true;
     } catch (e) {
       console.log(e);
 
@@ -49,19 +50,9 @@ function useProvideUser() {
     return true;
   };
 
-  useEffect(() => {
-    api
-      .getUser()
-      .then((user) => {
-        setUser(user);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, []);
-
   return {
-    user: user && user,
+    user: user,
+    isLoading,
     error,
     handleAddPoints,
   };
