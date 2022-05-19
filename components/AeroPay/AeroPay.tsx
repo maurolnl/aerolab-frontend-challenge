@@ -73,6 +73,15 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
     const response = await handleAddPoints(AMOUNTS[activeButton]);
 
     setLoading(false);
+
+    if (response) {
+      //TODO: add toast notification with msg: "Points Added successfully."
+
+      return;
+    }
+
+    //TODO: add toast notification with msg: "There was a problem adding your Points."
+    return;
   };
 
   return (
@@ -98,10 +107,17 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
             selectButtonIndex={1}
             w={"100%"}
           />
-          <ButtonCTA h="51px" mt="0px" textVariant="AllCaps" w="100%" onClick={handleClick}>
+          <ButtonCTA
+            h="51px"
+            mt="0px"
+            textVariant="AllCaps"
+            variant={isLoading ? "Processing" : ""}
+            w="100%"
+            onClick={handleClick}
+          >
             <Icon src={aeropay_3.src} variant="Mobile" />
             <TextDefault color={"100"} ml={"8px"}>
-              Add Points
+              {isLoading ? "Processing..." : "Add Points"}
             </TextDefault>
           </ButtonCTA>
         </AmountAndButtonWrapper>

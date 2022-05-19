@@ -41,7 +41,10 @@ export const ButtonCTA = styled.button<Props>`
   ${(p) => {
     switch (p.variant) {
       case "Processing":
-        return `opacity: 70%;`;
+        return `
+          opacity: 70%;
+          cursor: not-allowed;
+          `;
 
       case "Disabled":
         return `
