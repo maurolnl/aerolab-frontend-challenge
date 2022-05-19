@@ -1,6 +1,6 @@
 import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
-import {createRef, useRef} from "react";
+import {useRef} from "react";
 
 import {GlobalStyle} from "../styles/Global";
 import ClientOnly from "../components/ClientOnly";
@@ -11,9 +11,9 @@ import {Stack} from "../components/layout/Stack.styled";
 import ProductSection from "../components/Products/ProductSection";
 import Walkthrough from "../components/Walkthrough/Walkthrough";
 import {ProvideUser} from "../components/User/context";
-import {IProduct} from "../components/Products/types";
 import api from "../components/Products/api";
 import {ProvideFilters} from "../components/Products/context";
+import {IProduct} from "../components/Products/types";
 
 interface Props {
   products: IProduct[];

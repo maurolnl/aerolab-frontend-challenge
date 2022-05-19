@@ -1,8 +1,6 @@
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 
-import {PRODUCT_QUANTITY} from "../../constants";
-
 export const useMedia = (queries: string[], values: boolean[], defaultValue = false) => {
   const mediaQueryLists: any[] = queries.map((q) =>
     typeof window !== "undefined" ? window.matchMedia(q) : false,
