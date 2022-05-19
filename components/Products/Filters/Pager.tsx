@@ -23,11 +23,11 @@ const Wrapper = styled.div<{display?: string}>`
   border-radius: 16px;
 `;
 
-interface Props {
+interface ButtonProps {
   isDisabled?: boolean;
 }
 
-const PagerButton = styled.button<Props>`
+const PagerButton = styled.button<ButtonProps>`
   background-color: ${(p) => (p.isDisabled ? Colors.Neutral[200] : Colors.Brand.Light)};
 
   width: 40px;
@@ -46,17 +46,31 @@ const PagerButton = styled.button<Props>`
 
 interface Props {
   display?: string;
+  page: number;
+  totalPages: number;
+  handleNextPage: () => void;
+  handlePreviousPage: () => void;
 }
 
-const Pager: React.FC<Props> = ({display}) => {
-  const [disabledLeft, setDisabledLeft] = useState<boolean>(true);
-  const [disabledRight, setDisabledRight] = useState<boolean>(false);
-  const {page, handleNextPage, handlePreviousPage, totalPages} = useFilters();
+const Pager: React.FC<Props> = ({
+  display,
+  page,
+  totalPages,
+  handleNextPage,
+  handlePreviousPage,
+}) => {
+  const isDisabledRight = totalPages === 1 ? true : page < totalPages ? false : true;
+  const isDisableLeft = totalPages === 1 ? true : page === 1 ? true : false;
 
   return (
     <Wrapper display={display}>
-      <PagerButton isDisabled={disabledLeft} onClick={handlePreviousPage}>
-        <PagerIcon $isdisabled={disabledLeft} rotation="180deg" src={arrow.src} variant="Desktop" />
+      <PagerButton isDisabled={isDisableLeft} onClick={handlePreviousPage}>
+        <PagerIcon
+          $isdisabled={isDisableLeft}
+          rotation="180deg"
+          src={arrow.src}
+          variant="Desktop"
+        />
       </PagerButton>
       <p>
         <TextDefault>Page </TextDefault>
@@ -64,8 +78,13 @@ const Pager: React.FC<Props> = ({display}) => {
           {page} of {totalPages}
         </TextDefault>
       </p>
-      <PagerButton isDisabled={disabledRight} onClick={handleNextPage}>
-        <PagerIcon $isdisabled={disabledRight} rotation="0deg" src={arrow.src} variant="Desktop" />
+      <PagerButton isDisabled={isDisabledRight} onClick={handleNextPage}>
+        <PagerIcon
+          $isdisabled={isDisabledRight}
+          rotation="0deg"
+          src={arrow.src}
+          variant="Desktop"
+        />
       </PagerButton>
     </Wrapper>
   );
