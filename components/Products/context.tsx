@@ -30,13 +30,13 @@ export const useFilters = () => {
 };
 
 const useProvideFilters = () => {
-  const [total, setTotal] = useState<number>(32);
+  const [total, setTotal] = useState<number>(PRODUCT_QUANTITY);
   const [sort, setSort] = useState<string>(SORT_TYPES[0]);
   const [filter, setFilter] = useState<string>("All Products");
   const {page, handleNextPage, handlePreviousPage, handleNavigate} = usePager();
   const {limit} = usePageLimit();
 
-  const totalPages = Math.ceil(PRODUCT_QUANTITY / limit);
+  const totalPages = Math.ceil(total / limit);
 
   useEffect(() => {
     if (page > totalPages) {
