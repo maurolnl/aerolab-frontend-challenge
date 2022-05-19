@@ -42,7 +42,7 @@ const CategoryAndSortWrapper = styled.div`
 const Filters = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
   const isMobile = useMedia(["(max-width: 1023px)"], [true]);
-  const {handleSortChange} = useFilters();
+  const {page, handleNextPage, handlePreviousPage, totalPages, handleSortChange} = useFilters();
 
   return (
     <ClientOnly>
@@ -53,7 +53,13 @@ const Filters = () => {
             <Divider display={isDesktop ? "" : "none"} src={Divider_115.src} variant="Desktop" />
             <Sort />
           </CategoryAndSortWrapper>
-          <Pager display={isMobile ? "none" : "flex"} />
+          <Pager
+            display={isMobile ? "none" : "flex"}
+            handleNextPage={handleNextPage}
+            handlePreviousPage={handlePreviousPage}
+            page={page}
+            totalPages={totalPages}
+          />
         </Wrapper>
         <ToggleGroup
           callback={handleSortChange}
