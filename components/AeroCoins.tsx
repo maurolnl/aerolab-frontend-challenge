@@ -11,6 +11,7 @@ import AeroPay from "./AeroPay/AeroPay";
 import {device} from "./media/media";
 import {useMedia} from "./layout/hooks";
 import {useUser} from "./User/context";
+import {formatCurrency} from "./utils";
 
 const CoinAmount = styled.p`
   margin-left: 8px;
@@ -68,7 +69,7 @@ const AeroCoins = () => {
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
           <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
-          <CoinAmount>{user ? user.points : error ? 0 : 0}</CoinAmount>
+          <CoinAmount>{user ? formatCurrency(user.points) : error ? 0 : 0}</CoinAmount>
         </Wrapper>
         <DropdownIcon
           rotation={isOpen ? "90deg" : "-90deg"}
