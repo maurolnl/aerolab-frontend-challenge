@@ -1,5 +1,6 @@
 import type {AppProps} from "next/app";
 import styled from "styled-components";
+import "../styles/styles.css";
 
 const AppEl = styled.div`
   display: flex;

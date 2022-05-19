@@ -1,12 +1,6 @@
 import {createGlobalStyle} from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Montserrat';
-    src: url('/fonts/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
-    font-style: normal;
-    font-weight: 1 999;
-  }
   html,
   body {
     font-family: 'Montserrat';
