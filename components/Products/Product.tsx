@@ -1,6 +1,7 @@
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import styled from "styled-components";
+import {mutate} from "swr";
 
 import aeropay_icon from "../../assets/icons/aeropay-3.svg";
 import {Colors, Shadows} from "../../styles/Theme";
@@ -10,8 +11,11 @@ import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TextL2Default} from "../layout/Text/TextL2Default.styled";
 import {device} from "../media/media";
 import {useMedia} from "../layout/hooks";
+import {useUser} from "../User/context";
+import {PROD_URL} from "../../constants";
 
 import {Images} from "./types";
+import api from "./api";
 
 const ProductWrapper = styled.article`
   display: flex;
@@ -81,19 +85,46 @@ const Center = styled.div`
 `;
 
 interface Props {
+  productId: string;
   name: string;
   category: string;
   price: number;
   images: Images;
 }
 
-const Product: React.FC<Props> = ({name, category, images, price}) => {
+const Product: React.FC<Props> = ({productId, name, category, images, price}) => {
   const [isProcessing, setProcessing] = useState<boolean>(false);
   const [isDisabled, setDisabled] = useState<boolean>(false);
   const isMobileS = useMedia(["(max-width: 620px)"], [true]);
+  const {user} = useUser();
+
+  useEffect(() => {
+    const isButtonDisabled = user.points < price;
+
+    setDisabled(isButtonDisabled);
+  }, [user.points, price]);
 
   const buttonVariant = isDisabled ? "Disabled" : isProcessing ? "Processing" : "";
   const iconVariant = isMobileS ? "Small" : "Mobile";
+
+  const handleRedeem = async () => {
+    setProcessing(true);
+    const response = await api.redeemProduct(productId);
+
+    mutate(`${PROD_URL}user/me`);
+
+    setProcessing(false);
+
+    if (response) {
+      //TODO:send notification of success
+
+      return;
+    } else {
+      //TODO:send notification of fail
+
+      return;
+    }
+  };
 
   return (
     <ProductWrapper>
@@ -115,12 +146,18 @@ const Product: React.FC<Props> = ({name, category, images, price}) => {
           <TextL2Default variant="AllCaps">{category}</TextL2Default>
         </ProductDetail>
       </ProductCard>
-      <ButtonCTA borderRadius="16px" h="59px" variant={buttonVariant} w="100%">
+      <ButtonCTA
+        borderRadius="16px"
+        h="59px"
+        variant={buttonVariant}
+        w="100%"
+        onClick={handleRedeem}
+      >
         {isDisabled ? (
           <span>
             You need{" "}
             <Icon isDisabled="true" src={aeropay_icon.src} valign="middle" variant={iconVariant} />{" "}
-            000
+            {user ? price - user.points : 0}
           </span>
         ) : isProcessing ? (
           "Processing..."

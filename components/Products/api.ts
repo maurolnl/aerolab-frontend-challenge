@@ -1,3 +1,5 @@
+import {MOCK_URL, PROD_URL} from "../../constants";
+
 import {IProduct} from "./types";
 
 const prod_url = "https://coding-challenge-api.aerolab.co";
@@ -18,5 +20,18 @@ export default {
     })
       .then((response) => response.json())
       .catch((e) => e.message);
+  },
+  redeemProduct: async (productId: string): Promise<{message: string}> => {
+    return fetch(`${PROD_URL}redeem`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: process.env.NEXT_PUBLIC_AEROLAB_PRIVATE_TOKEN as string,
+      },
+      body: JSON.stringify({productId: productId}),
+    })
+      .then((response) => response.json())
+      .catch((e) => e.error);
   },
 };
