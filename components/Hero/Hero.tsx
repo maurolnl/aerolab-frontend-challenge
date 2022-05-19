@@ -91,7 +91,11 @@ const IllustrationBackground = styled.div`
   z-index: -1;
 `;
 
-const Hero = () => {
+interface Props {
+  handleScroll: () => void;
+}
+
+const Hero: React.FC<Props> = ({handleScroll}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
@@ -118,6 +122,7 @@ const Hero = () => {
               h={isDesktop ? "80px" : "64px"}
               textVariant="AllCaps"
               w={isDesktop ? "318px" : "303px"}
+              onClick={handleScroll}
             >
               View All Products <ArrowIcon rotation="0deg" src={arrow_icon.src} />
             </ButtonCTA>

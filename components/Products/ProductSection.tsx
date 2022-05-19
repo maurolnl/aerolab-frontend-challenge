@@ -1,4 +1,5 @@
 import React from "react";
+import {forwardRef} from "react";
 import styled from "styled-components";
 
 import {Container} from "../layout/Container.styled";
@@ -40,9 +41,11 @@ const TitleWrapper = styled.div`
 interface Props {
   products: IProduct[];
 }
-const ProductSection: React.FC<Props> = ({products}) => {
+const ProductSection = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const {products} = props;
+
   return (
-    <Container>
+    <Container ref={ref}>
       <SectionWrapper>
         <HeaderWrapper>
           <TitleWrapper>
@@ -60,6 +63,8 @@ const ProductSection: React.FC<Props> = ({products}) => {
       </SectionWrapper>
     </Container>
   );
-};
+});
+
+ProductSection.displayName = "ProductSection";
 
 export default ProductSection;

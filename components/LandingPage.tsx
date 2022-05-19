@@ -7,7 +7,11 @@ import {useMedia} from "./layout/hooks";
 import {Stack} from "./layout/Stack.styled";
 import Navbar from "./Navbar/Navbar";
 
-const LandingPage = () => {
+interface Props {
+  handleScroll: () => void;
+}
+
+const LandingPage: React.FC<Props> = ({handleScroll}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
@@ -15,7 +19,7 @@ const LandingPage = () => {
       <ClientOnly>
         <Stack direction="column" gap={isDesktop ? "112px" : "40px"}>
           <Navbar />
-          <Hero />
+          <Hero handleScroll={handleScroll} />
         </Stack>
       </ClientOnly>
     </Container>

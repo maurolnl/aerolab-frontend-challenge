@@ -1,5 +1,6 @@
 import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
+import {createRef, useRef} from "react";
 
 import {GlobalStyle} from "../styles/Global";
 import ClientOnly from "../components/ClientOnly";
@@ -20,6 +21,11 @@ interface Props {
 
 const Home: NextPage<Props> = ({products}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+  const productSectionRef = useRef<HTMLDivElement>(null);
+
+  function handleScroll() {
+    if (productSectionRef.current) productSectionRef.current.scrollIntoView({behavior: "smooth"});
+  }
 
   return (
     <ProvideUser>
@@ -38,11 +44,11 @@ const Home: NextPage<Props> = ({products}) => {
       </Head>
       <ClientOnly>
         <Stack direction="column" gap={isDesktop ? "135px" : "19px"}>
-          <LandingPage />
+          <LandingPage handleScroll={handleScroll} />
           <Stack direction="column" gap="160px">
             <Walkthrough />
             <ProvideFilters>
-              <ProductSection products={products} />
+              <ProductSection ref={productSectionRef} products={products} />
             </ProvideFilters>
             <Footer />
           </Stack>
