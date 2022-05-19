@@ -133,6 +133,7 @@ const Hero: React.FC<Props> = ({handleScroll}) => {
       {/* Only shown on desktop media */}
       <RightHeroSection>
         <Image
+          priority
           alt="hero-illustration"
           height={795}
           objectFit="cover"
