@@ -5,6 +5,7 @@ import {useMedia} from "../layout/hooks";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {device} from "../media/media";
 
+import {useFilters} from "./context";
 import Pager from "./Filters/Pager";
 
 const Wrapper = styled.div`
@@ -34,15 +35,23 @@ const Empty = styled.div<Props>`
 
 const PageDescription = () => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
+  const {page, handleNextPage, handlePreviousPage, totalPages, total, limit} = useFilters();
 
   return (
     <Wrapper>
       <Empty display={isDesktop ? "" : "none"} />
       <p>
-        <TextDefault color="gradientSemiExtended">16 of 32</TextDefault>
+        <TextDefault color="gradientSemiExtended">
+          {limit > total ? total : limit} of {total}
+        </TextDefault>
         <TextDefault> products</TextDefault>
       </p>
-      <Pager />
+      <Pager
+        handleNextPage={handleNextPage}
+        handlePreviousPage={handlePreviousPage}
+        page={page}
+        totalPages={totalPages}
+      />
     </Wrapper>
   );
 };
