@@ -13,23 +13,23 @@ import {useMedia} from "./layout/hooks";
 import {useUser} from "./User/context";
 import {formatCurrency} from "./utils";
 
-const CoinAmount = styled.p`
-  margin-left: 8px;
-`;
 const AeroCoinButton = styled.button`
   display: flex;
   align-items: center;
   border: 1px solid;
   border-color: ${Colors.Neutral[300]};
   background-color: ${Colors.Neutral[0]};
-  width: 143px;
-  height: 40px;
+  min-width: 143px;
+  min-height: 40px;
   justify-content: space-between;
   border-radius: 16px;
   padding: 8px 16px;
   box-shadow: ${Shadows.Elevation1.HoverAndActive};
   cursor: pointer;
   z-index: 5;
+
+  gap: 16px;
+
   ${Colors.Bundler(Colors.Brand.Default)}
   ${TextStyles.Bundler(TextStyles.Texts.L1.Default)}
 
@@ -39,8 +39,8 @@ const AeroCoinButton = styled.button`
   }
 
   @media ${device.desktop} {
-    height: 48px;
-    width: 156px;
+    min-height: 48px;
+    min-width: 172px;
   }
 `;
 
@@ -48,6 +48,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  gap: 8px;
 `;
 
 const PaymentBox = styled.div`
@@ -69,13 +71,9 @@ const AeroCoins = () => {
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
           <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
-          <CoinAmount>{user ? formatCurrency(user.points) : error ? 0 : 0}</CoinAmount>
+          <p>{user ? formatCurrency(user.points) : error ? 0 : 0}</p>
         </Wrapper>
-        <DropdownIcon
-          rotation={isOpen ? "90deg" : "-90deg"}
-          src={arrow.src}
-          variant={isDesktop ? "Desktop" : "Mobile"}
-        />
+        <DropdownIcon rotation={isOpen ? "90deg" : "-90deg"} src={arrow.src} variant={"Desktop"} />
       </AeroCoinButton>
       {isOpen && <AeroPay onClose={handleClose} />}
     </PaymentBox>
