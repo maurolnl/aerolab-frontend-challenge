@@ -25,15 +25,16 @@ const Wrapper = styled.div`
   }
 `;
 
-interface Props {
-  display?: string;
-}
-const Empty = styled.div<Props>`
+const Empty = styled.div<{display?: string}>`
   display: ${(p) => (p.display ? p.display : "")};
   width: 259px;
 `;
 
-const PageDescription = () => {
+interface Props {
+  handleScroll: () => void;
+}
+
+const PageDescription: React.FC<Props> = ({handleScroll}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
   const {page, handleNextPage, handlePreviousPage, totalPages, total, limit} = useFilters();
 
@@ -49,6 +50,7 @@ const PageDescription = () => {
       <Pager
         handleNextPage={handleNextPage}
         handlePreviousPage={handlePreviousPage}
+        handleScroll={handleScroll}
         page={page}
         totalPages={totalPages}
       />

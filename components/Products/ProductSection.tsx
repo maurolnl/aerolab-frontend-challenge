@@ -40,9 +40,10 @@ const TitleWrapper = styled.div`
 
 interface Props {
   products: IProduct[];
+  handleScroll: () => void;
 }
 const ProductSection = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const {products} = props;
+  const {products, handleScroll} = props;
 
   return (
     <Container ref={ref}>
@@ -59,7 +60,7 @@ const ProductSection = forwardRef<HTMLDivElement, Props>((props, ref) => {
           <Filters />
         </HeaderWrapper>
         <Products products={products} />
-        <PageDescription />
+        <PageDescription handleScroll={handleScroll} />
       </SectionWrapper>
     </Container>
   );

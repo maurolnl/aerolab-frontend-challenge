@@ -50,6 +50,7 @@ interface Props {
   totalPages: number;
   handleNextPage: () => void;
   handlePreviousPage: () => void;
+  handleScroll?: () => void;
 }
 
 const Pager: React.FC<Props> = ({
@@ -58,13 +59,20 @@ const Pager: React.FC<Props> = ({
   totalPages,
   handleNextPage,
   handlePreviousPage,
+  handleScroll,
 }) => {
   const isDisabledRight = totalPages === 1 ? true : page < totalPages ? false : true;
   const isDisableLeft = totalPages === 1 ? true : page === 1 ? true : false;
 
   return (
     <Wrapper display={display}>
-      <PagerButton isDisabled={isDisableLeft} onClick={handlePreviousPage}>
+      <PagerButton
+        isDisabled={isDisableLeft}
+        onClick={() => {
+          if (handleScroll) handleScroll();
+          handlePreviousPage();
+        }}
+      >
         <PagerIcon
           $isdisabled={isDisableLeft}
           rotation="180deg"
@@ -78,7 +86,13 @@ const Pager: React.FC<Props> = ({
           {page} of {totalPages}
         </TextDefault>
       </p>
-      <PagerButton isDisabled={isDisabledRight} onClick={handleNextPage}>
+      <PagerButton
+        isDisabled={isDisabledRight}
+        onClick={() => {
+          if (handleScroll) handleScroll();
+          handleNextPage();
+        }}
+      >
         <PagerIcon
           $isdisabled={isDisabledRight}
           rotation="0deg"

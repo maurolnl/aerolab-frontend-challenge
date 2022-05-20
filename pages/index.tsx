@@ -49,7 +49,11 @@ const Home: NextPage<Props> = ({products}) => {
           <Stack direction="column" gap="160px">
             <Walkthrough />
             <ProvideFilters>
-              <ProductSection ref={productSectionRef} products={products} />
+              <ProductSection
+                ref={productSectionRef}
+                handleScroll={handleScroll}
+                products={products}
+              />
             </ProvideFilters>
             <Footer />
           </Stack>
