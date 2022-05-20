@@ -82,6 +82,8 @@ const WalkthroughBG = styled.div`
   background: ${Colors.Specials.IllustrationBG.Color};
   z-index: -1;
 
+  opacity: 0.5;
+
   @media ${device.desktop} {
     left: 50%;
     top: 50%;

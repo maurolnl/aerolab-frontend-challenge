@@ -7,7 +7,7 @@ import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {TextL2Default} from "../layout/Text/TextL2Default.styled";
 import aeroicon_2 from "../../assets/icons/aeropay-2.svg";
 import waveicon from "../../assets/illustrations/single-wave-pattern.svg";
-import {WaveIcon} from "../layout/Wave.styled";
+import {AeroCardWave} from "../layout/Wave.styled";
 
 const AeroCardBackground = styled.div`
   width: 264px;
@@ -51,7 +51,7 @@ const AeroCard = () => {
       </Wrapper>
       {wavePatterns.map((wave, index) => {
         return (
-          <WaveIcon
+          <AeroCardWave
             key={index}
             bottom={bottomPositionWave(index)}
             index={index}

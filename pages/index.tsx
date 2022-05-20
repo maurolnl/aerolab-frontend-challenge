@@ -15,6 +15,7 @@ import {ProvideUser} from "../components/User/context";
 import api from "../components/Products/api";
 import {ProvideFilters} from "../components/Products/context";
 import {IProduct} from "../components/Products/types";
+import BGWaves from "../components/layout/BGWaves";
 
 interface Props {
   products: IProduct[];
@@ -58,6 +59,7 @@ const Home: NextPage<Props> = ({products}) => {
             <Footer />
           </Stack>
         </Stack>
+        <BGWaves />
         <Toaster />
       </ClientOnly>
     </ProvideUser>
