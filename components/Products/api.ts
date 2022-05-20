@@ -2,15 +2,13 @@ import {MOCK_URL, PROD_URL} from "../../constants";
 
 import {IProduct} from "./types";
 
-const prod_url = "https://coding-challenge-api.aerolab.co";
-
 export const products_endpoint =
   "https://private-anon-c695ebc5f5-aerolabchallenge.apiary-proxy.com/products";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getAllProducts: async (): Promise<IProduct[]> => {
-    return fetch(`${prod_url}/products?page=1`, {
+    return fetch(`${PROD_URL}products`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
