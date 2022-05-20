@@ -1,6 +1,7 @@
 import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
 import {useRef} from "react";
+import {Toaster} from "react-hot-toast";
 
 import {GlobalStyle} from "../styles/Global";
 import ClientOnly from "../components/ClientOnly";
@@ -53,6 +54,7 @@ const Home: NextPage<Props> = ({products}) => {
             <Footer />
           </Stack>
         </Stack>
+        <Toaster />
       </ClientOnly>
     </ProvideUser>
   );

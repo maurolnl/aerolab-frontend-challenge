@@ -13,6 +13,7 @@ import {device} from "../media/media";
 import {useMedia} from "../layout/hooks";
 import {useUser} from "../User/context";
 import {PROD_URL} from "../../constants";
+import {ErrorToast, SuccessToast} from "../Toast/Toast";
 
 import {Images} from "./types";
 import api from "./api";
@@ -99,10 +100,10 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
   const {user} = useUser();
 
   useEffect(() => {
-    const isButtonDisabled = user.points < price;
+    const isButtonDisabled = user?.points < price;
 
     setDisabled(isButtonDisabled);
-  }, [user.points, price]);
+  }, [user?.points, price]);
 
   const buttonVariant = isDisabled ? "Disabled" : isProcessing ? "Processing" : "";
   const iconVariant = isMobileS ? "Small" : "Mobile";
@@ -116,11 +117,11 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
     setProcessing(false);
 
     if (response) {
-      //TODO:send notification of success
+      SuccessToast(name, "redeemed successfully", isMobileS);
 
       return;
     } else {
-      //TODO:send notification of fail
+      ErrorToast(isMobileS);
 
       return;
     }

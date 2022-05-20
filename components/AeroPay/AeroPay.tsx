@@ -11,6 +11,8 @@ import close_icon from "../../assets/icons/cross-default.svg";
 import close_icon_active from "../../assets/icons/cross-active.svg";
 import ToggleGroup from "../layout/ToggleGroup";
 import {useUser} from "../User/context";
+import {ErrorToast, SuccessToast} from "../Toast/Toast";
+import {useMedia} from "../layout/hooks";
 
 import AeroCard from "./AeroCard";
 
@@ -59,6 +61,7 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
   const [isActive, setActive] = useState<boolean>(false);
   const [activeButton, setActiveButton] = useState<number>(1);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const isMobileS = useMedia(["(max-width: 620px)"], [true]);
 
   const {handleAddPoints} = useUser();
 
@@ -75,12 +78,12 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
     setLoading(false);
 
     if (response) {
-      //TODO: add toast notification with msg: "Points Added successfully."
+      SuccessToast("Points ", "redeemed successfully", isMobileS);
 
       return;
     }
+    ErrorToast(isMobileS);
 
-    //TODO: add toast notification with msg: "There was a problem adding your Points."
     return;
   };
 
