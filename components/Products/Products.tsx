@@ -60,7 +60,7 @@ const Products: React.FC<Props> = ({products}) => {
 
     handleTotalChange(newProducts.length);
     setFilteredProducts(newProducts);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
   return (
