@@ -117,7 +117,7 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
     setProcessing(false);
 
     if (response) {
-      SuccessToast(name, "redeemed successfully", isMobileS);
+      SuccessToast(name, " redeemed successfully", isMobileS);
 
       return;
     } else {
