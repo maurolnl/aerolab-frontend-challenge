@@ -35,8 +35,8 @@ export const Icon = styled(SVG)<Props>`
         `;
       case "Small":
         return `
-          width: 20px;
-          height: 20px;
+          min-width: 20px;
+          min-height: 20px;
 
           vertical-align: sub;
       `;
