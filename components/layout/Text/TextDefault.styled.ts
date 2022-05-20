@@ -58,4 +58,8 @@ export const TextDefault = styled.span<Props>`
       }
     }};
   }
+
+  @media ${device.mobileS} {
+    white-space: break-spaces;
+  }
 `;
