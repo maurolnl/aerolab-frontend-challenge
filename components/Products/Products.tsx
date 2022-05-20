@@ -15,6 +15,8 @@ const Grid = styled.div`
   row-gap: 48px;
   column-gap: 24px;
 
+  min-height: 506px;
+
   @media ${device.desktop} {
     row-gap: 80px;
   }
