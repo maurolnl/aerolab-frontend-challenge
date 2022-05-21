@@ -1,6 +1,7 @@
 import Image, {StaticImageData} from "next/image";
 import React from "react";
 import styled from "styled-components";
+import {motion, Variants} from "framer-motion";
 
 import {Colors, Shadows} from "../../styles/Theme";
 import {Icon} from "../layout/Icon.styled";
@@ -25,20 +26,20 @@ const Wrapper = styled.article`
   border-color: ${Colors.Neutral[300]};
   border-radius: 32px;
 
-  @media ${device.desktop} {
+  /* @media ${device.desktop} {
     ${(p) => {
-      switch (p.id) {
-        case "1":
-          return `
+    switch (p.id) {
+      case "1":
+        return `
           transform: translate(80px, 35px) rotate(-3deg);
         `;
-        case "3":
-          return `
+      case "3":
+        return `
           transform: translate(-80px, 35px) rotate(3deg);
     `;
-      }
-    }}
-  }
+    }
+  }}
+  } */
 
   @media ${device.desktop} {
     width: 532px;
@@ -166,8 +167,8 @@ export interface ICard {
   titleIcon: string;
   description: string;
   descriptionMobile: string;
+  cardVariants: Variants;
 }
-
 const WalkthroughCard: React.FC<ICard> = ({
   id,
   headerImage,
@@ -176,11 +177,12 @@ const WalkthroughCard: React.FC<ICard> = ({
   titleIcon,
   description,
   descriptionMobile,
+  cardVariants,
 }) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
-    <Wrapper id={id}>
+    <Wrapper as={motion.article} id={id} variants={isDesktop ? cardVariants : undefined}>
       <Header>
         <Image
           alt={"Sally-31"}

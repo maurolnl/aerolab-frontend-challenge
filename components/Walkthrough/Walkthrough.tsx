@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
+import {motion, Variant, Variants} from "framer-motion";
 
 import {Colors} from "../../styles/Theme";
 import aerolab_walkthrough1_desktop from "../../assets/illustrations/walkthroug-1-desktop.png";
@@ -143,16 +144,70 @@ const IllustrationWrapper = styled.div`
   }
 `;
 
+const container: Variants = {
+  offscreen: {
+    x: 0,
+    y: 0,
+  },
+};
+
+const middleCard: Variants = {
+  offscreen: {
+    x: 0,
+    y: 0,
+  },
+  onScreenShow: {},
+};
+
+const leftCard: Variants = {
+  offscreen: {
+    x: 375,
+  },
+  onScreenShow: {
+    x: 80,
+    y: 35,
+    rotate: -3,
+    transition: {
+      type: "spring",
+      bounce: 0.4,
+      duration: 0.8,
+    },
+  },
+};
+
+const rightCard: Variants = {
+  offscreen: {
+    x: -375,
+  },
+  onScreenShow: {
+    x: -80,
+    y: 35,
+    rotate: 3,
+    transition: {
+      type: "spring",
+      bounce: 0.3,
+      duration: 1,
+    },
+  },
+};
+
 const Walkthrough = () => {
   return (
     <Wrapper>
       <Container>
         <ClientOnly>
-          <WalkthroughCards>
-            {card_source.map((card) => {
+          <WalkthroughCards
+            as={motion.div}
+            initial="offscreen"
+            variants={container}
+            viewport={{once: true, amount: 0.7}}
+            whileInView="onScreenShow"
+          >
+            {card_source.map((card, index) => {
               return (
                 <WalkthroughCard
                   key={card.id}
+                  cardVariants={index === 0 ? leftCard : index === 1 ? middleCard : rightCard}
                   description={card.description}
                   descriptionMobile={card.descriptionMobile}
                   headerImage={card.headerImage}
