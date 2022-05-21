@@ -52,13 +52,18 @@ const Footer = () => {
         }}
         onMouseUp={() => {
           setActive(false);
-          window.open("https://github.com/maurolnl/aerolab-frontend-challenge", "_blank");
         }}
       >
         <Icon
-          src={isActive ? github_icon_active.src : github_icon_default.src}
+          display={isActive ? "none" : "inline-block"}
+          src={github_icon_default.src}
           variant={!isMobile ? "Desktop" : "Mobile"}
-        />{" "}
+        />
+        <Icon
+          display={isActive ? "inline-block" : "none"}
+          src={github_icon_active.src}
+          variant={!isMobile ? "Desktop" : "Mobile"}
+        />
         View this repository
       </NavLink>
     </Wrapper>
