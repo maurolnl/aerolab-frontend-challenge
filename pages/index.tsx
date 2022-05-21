@@ -2,6 +2,7 @@ import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
 import {useRef} from "react";
 import {Toaster} from "react-hot-toast";
+import styled from "styled-components";
 
 import {GlobalStyle} from "../styles/Global";
 import ClientOnly from "../components/ClientOnly";
@@ -16,6 +17,13 @@ import api from "../components/Products/api";
 import {ProvideFilters} from "../components/Products/context";
 import {IProduct} from "../components/Products/types";
 import BGWaves from "../components/layout/BGWaves";
+import Navbar from "../components/Navbar/Navbar";
+
+const NavbarWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
 
 interface Props {
   products: IProduct[];
@@ -45,7 +53,10 @@ const Home: NextPage<Props> = ({products}) => {
         />
       </Head>
       <ClientOnly>
-        <Stack direction="column" gap={isDesktop ? "135px" : "19px"}>
+        <NavbarWrapper>
+          <Navbar />
+        </NavbarWrapper>
+        <Stack direction="column" gap={isDesktop ? "135px" : "19px"} zindex="0">
           <LandingPage handleScroll={handleScroll} />
           <Stack direction="column" gap="160px">
             <Walkthrough />

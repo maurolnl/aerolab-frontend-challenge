@@ -5,6 +5,7 @@ interface Props {
   width?: string;
   gap?: string;
   alignitems?: string;
+  zindex?: string;
 }
 
 export const Stack = styled.div<Props>`
@@ -13,4 +14,6 @@ export const Stack = styled.div<Props>`
   width: ${(p) => (p.width ? p.width : "")};
   gap: ${(p) => (p.gap ? p.gap : "")};
   align-items: ${(p) => (p.alignitems ? p.alignitems : "")};
+
+  z-index: ${(p) => (p.zindex ? p.zindex : "")};
 `;

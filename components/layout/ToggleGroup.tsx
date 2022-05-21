@@ -20,6 +20,8 @@ const ToggleWrapper = styled.div<StyleProps>`
 
   gap: ${(p) => (p.gap ? p.gap : "4px")};
 
+  z-index: 0;
+
   @media ${device.mobileS} {
     gap: 4px;
   }

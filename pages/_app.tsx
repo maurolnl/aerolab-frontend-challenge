@@ -7,6 +7,7 @@ const AppEl = styled.div`
   min-height: 100vh;
   flex-direction: column;
   overflow-x: clip;
+  position: relative;
 `;
 
 function MyApp({Component, pageProps}: AppProps) {
