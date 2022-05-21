@@ -2,6 +2,7 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import styled from "styled-components";
 import {mutate} from "swr";
+import {motion} from "framer-motion";
 
 import aeropay_icon from "../../assets/icons/aeropay-3.svg";
 import {Colors, Shadows} from "../../styles/Theme";
@@ -128,7 +129,19 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
   };
 
   return (
-    <ProductWrapper>
+    <ProductWrapper
+      layout
+      animate={{opacity: 1}}
+      as={motion.article}
+      exit={{opacity: 0}}
+      initial={{opacity: 0.5}}
+      transition={{
+        duration: 0.5,
+        type: "sping",
+        stiffness: 200,
+        damping: 30,
+      }}
+    >
       <ProductCard>
         <Center>
           <ImageWrapper>

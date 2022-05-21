@@ -1,3 +1,4 @@
+import {AnimatePresence, motion} from "framer-motion";
 import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 
@@ -66,35 +67,37 @@ const Products: React.FC<Props> = ({products}) => {
   }, [filter]);
 
   return (
-    <Grid>
-      {filteredProducts &&
-        filteredProducts
-          //Map to preserve relative order when filtering by most recent
-          .map((product, index) => {
-            return {
-              index: index,
-              product: product,
-            };
-          })
-          .sort((productA, productB) => {
-            if (sort === sortByLowestPrice) return productA.product.cost - productB.product.cost;
-            if (sort === sortByHighestPrice) return productB.product.cost - productA.product.cost;
+    <Grid as={motion.div}>
+      <AnimatePresence>
+        {filteredProducts &&
+          filteredProducts
+            //Map to preserve relative order when filtering by most recent
+            .map((product, index) => {
+              return {
+                index: index,
+                product: product,
+              };
+            })
+            .sort((productA, productB) => {
+              if (sort === sortByLowestPrice) return productA.product.cost - productB.product.cost;
+              if (sort === sortByHighestPrice) return productB.product.cost - productA.product.cost;
 
-            return productA.index - productB.index;
-          })
-          .map((product, index) => {
-            if (index >= offset && index < limit + offset)
-              return (
-                <Product
-                  key={product.product._id}
-                  category={product.product.category}
-                  images={product.product.img}
-                  name={product.product.name}
-                  price={product.product.cost}
-                  productId={product.product._id}
-                />
-              );
-          })}
+              return productA.index - productB.index;
+            })
+            .map((product, index) => {
+              if (index >= offset && index < limit + offset)
+                return (
+                  <Product
+                    key={product.product._id}
+                    category={product.product.category}
+                    images={product.product.img}
+                    name={product.product.name}
+                    price={product.product.cost}
+                    productId={product.product._id}
+                  />
+                );
+            })}
+      </AnimatePresence>
     </Grid>
   );
 };
