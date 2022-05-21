@@ -8,7 +8,7 @@ interface Props {
   w: string;
   h: string;
   variant?: string;
-  textVariant?: string;
+  $textVariant?: string;
   borderRadius?: string;
 }
 
@@ -60,7 +60,7 @@ export const ButtonCTA = styled.button<Props>`
   }}
 
   ${(p) => {
-    switch (p.textVariant) {
+    switch (p.$textVariant) {
       case "AllCaps":
         return TextStyles.Bundler(TextStyles.Texts.L1.AllCapsUnspaced);
 
@@ -71,7 +71,7 @@ export const ButtonCTA = styled.button<Props>`
 
   @media ${device.mobileS} {
     ${(p) => {
-      switch (p.textVariant) {
+      switch (p.$textVariant) {
         case "AllCaps":
           return TextStyles.Bundler(TextStyles.Texts.Mobile.L1.AllCapsUnspaced);
 

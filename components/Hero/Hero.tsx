@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
+import {motion} from "framer-motion";
 
 import aerolab_hero_illustration from "../../assets/illustrations/hero-desktop.png";
 import {ArrowIcon} from "../layout/ArrowIcon.styled";
@@ -105,13 +106,41 @@ const Hero: React.FC<Props> = ({handleScroll}) => {
           <Stack direction="column" gap={isDesktop ? "64px" : "40px"}>
             <Stack direction="column" gap="0px" width={isDesktop ? "590px" : "289px"}>
               <TitleWrapper>
-                <TextDefault variant="AllCaps">explore the</TextDefault>
-                <TitleL1 variant="gradient">Tech</TitleL1>
-                <TitleL1 variant="solid">Zone</TitleL1>
+                <TextDefault
+                  animate={{y: 0, opacity: 1}}
+                  as={motion.span}
+                  initial={{y: 20, opacity: 0.5}}
+                  transition={{duration: 0.5}}
+                  variant="AllCaps"
+                >
+                  explore the
+                </TextDefault>
+                <TitleL1
+                  animate={{y: 0, opacity: 1}}
+                  as={motion.h1}
+                  initial={{y: 20, opacity: 0.5}}
+                  transition={{duration: 0.5}}
+                  variant="gradient"
+                >
+                  Tech
+                </TitleL1>
+                <TitleL1
+                  animate={{y: 0, opacity: 1}}
+                  as={motion.h1}
+                  initial={{y: 20, opacity: 0.5}}
+                  transition={{duration: 0.5}}
+                  variant="solid"
+                >
+                  Zone
+                </TitleL1>
               </TitleWrapper>
               <TextDefault
-                alignText={!isDesktop ? "center" : ""}
+                $alignText={!isDesktop ? "center" : ""}
+                animate={{y: 0, opacity: 1}}
+                as={motion.span}
+                initial={{y: 20, opacity: 0.5}}
                 mt="24px"
+                transition={{duration: 0.5}}
                 variant={isDesktop ? "" : "Small"}
               >
                 Here you’ll be able to exchange all of your hard-earned Aeropoints and exchange them
@@ -119,8 +148,15 @@ const Hero: React.FC<Props> = ({handleScroll}) => {
               </TextDefault>
             </Stack>
             <ButtonCTA
+              $textVariant="AllCaps"
+              animate={{opacity: 1}}
+              as={motion.button}
               h={isDesktop ? "80px" : "64px"}
-              textVariant="AllCaps"
+              initial={{opacity: 0}}
+              transition={{
+                delay: 0.5,
+                duration: 0.2,
+              }}
               w={isDesktop ? "318px" : "303px"}
               onClick={handleScroll}
             >

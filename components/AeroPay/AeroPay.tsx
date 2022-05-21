@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
+import {AnimatePresence, motion} from "framer-motion";
 
 import {Colors, Shadows} from "../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
@@ -55,9 +56,10 @@ const Header = styled.div`
 
 interface Props {
   onClose: () => void;
+  isOpen: boolean;
 }
 
-const AeroPay: React.FC<Props> = ({onClose}) => {
+const AeroPay: React.FC<Props> = ({onClose, isOpen}) => {
   const [isActive, setActive] = useState<boolean>(false);
   const [activeButton, setActiveButton] = useState<number>(1);
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -88,44 +90,54 @@ const AeroPay: React.FC<Props> = ({onClose}) => {
   };
 
   return (
-    <Wrapper>
-      <Header>
-        <TextDefault color={"900"}>Add Balance</TextDefault>
-        <ButtonClose onClick={onClose}>
-          <Icon
-            src={isActive ? close_icon_active.src : close_icon.src}
-            variant="Mobile"
-            onMouseEnter={() => setActive(true)}
-            onMouseLeave={() => setActive(false)}
-          />
-        </ButtonClose>
-      </Header>
-      <Content>
-        <AeroCard />
-        <AmountAndButtonWrapper>
-          <ToggleGroup
-            callback={handleChange}
-            h={"35px"}
-            labels={AMOUNTS}
-            selectButtonIndex={1}
-            w={"100%"}
-          />
-          <ButtonCTA
-            h="51px"
-            mt="0px"
-            textVariant="AllCaps"
-            variant={isLoading ? "Processing" : ""}
-            w="100%"
-            onClick={handleClick}
-          >
-            <Icon src={aeropay_3.src} variant="Mobile" />
-            <TextDefault color={"100"} ml={"8px"}>
-              {isLoading ? "Processing..." : "Add Points"}
-            </TextDefault>
-          </ButtonCTA>
-        </AmountAndButtonWrapper>
-      </Content>
-    </Wrapper>
+    <AnimatePresence>
+      {isOpen && (
+        <Wrapper
+          animate={{opacity: 1, scale: 1}}
+          as={motion.div}
+          exit={{opacity: 0}}
+          initial={{opacity: 0, scale: 0.8}}
+          transition={{duration: 0.2}}
+        >
+          <Header>
+            <TextDefault color={"900"}>Add Balance</TextDefault>
+            <ButtonClose onClick={onClose}>
+              <Icon
+                src={isActive ? close_icon_active.src : close_icon.src}
+                variant="Mobile"
+                onMouseEnter={() => setActive(true)}
+                onMouseLeave={() => setActive(false)}
+              />
+            </ButtonClose>
+          </Header>
+          <Content>
+            <AeroCard />
+            <AmountAndButtonWrapper>
+              <ToggleGroup
+                callback={handleChange}
+                h={"35px"}
+                labels={AMOUNTS}
+                selectButtonIndex={1}
+                w={"100%"}
+              />
+              <ButtonCTA
+                $textVariant="AllCaps"
+                h="51px"
+                mt="0px"
+                variant={isLoading ? "Processing" : ""}
+                w="100%"
+                onClick={handleClick}
+              >
+                <Icon src={aeropay_3.src} variant="Mobile" />
+                <TextDefault color={"100"} ml={"8px"}>
+                  {isLoading ? "Processing..." : "Add Points"}
+                </TextDefault>
+              </ButtonCTA>
+            </AmountAndButtonWrapper>
+          </Content>
+        </Wrapper>
+      )}
+    </AnimatePresence>
   );
 };
 

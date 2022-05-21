@@ -9,7 +9,7 @@ interface Props {
   color?: string;
   whiteSpace?: string;
   variant?: string;
-  alignText?: string;
+  $alignText?: string;
   display?: string;
 }
 
@@ -17,7 +17,7 @@ export const TextDefault = styled.span<Props>`
   white-space: ${(p) => (p.whiteSpace ? p.whiteSpace : "")};
   margin-left: ${(p) => (p.ml ? p.ml : "")};
   margin-top: ${(p) => (p.mt ? p.mt : "")};
-  text-align: ${(p) => (p.alignText ? p.alignText : "")};
+  text-align: ${(p) => (p.$alignText ? p.$alignText : "")};
   display: ${(p) => (p.display ? p.display : "")};
 
   ${(p) => {

@@ -75,7 +75,7 @@ const AeroCoins = () => {
         </Wrapper>
         <DropdownIcon rotation={isOpen ? "90deg" : "-90deg"} src={arrow.src} variant={"Desktop"} />
       </AeroCoinButton>
-      {isOpen && <AeroPay onClose={handleClose} />}
+      <AeroPay isOpen={isOpen} onClose={handleClose} />
     </PaymentBox>
   );
 };
