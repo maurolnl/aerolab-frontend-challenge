@@ -1,9 +1,11 @@
+import {motion} from "framer-motion";
 import React, {useState} from "react";
 import styled from "styled-components";
 
 import {device} from "../media/media";
 
 import {ButtonSelector} from "./Button/ButtonSelector.styled";
+import {useMedia} from "./hooks";
 
 interface StyleProps {
   gap?: string;
@@ -45,6 +47,7 @@ const Index: React.FC<Props> = ({
   callback,
 }) => {
   const [active, setActive] = useState<number>(selectButtonIndex ? selectButtonIndex : 0);
+  const isOutOfContainer = useMedia(["(max-width: 463px)"], [true]);
 
   const handleClick = (index: number) => {
     setActive(index);
@@ -55,7 +58,14 @@ const Index: React.FC<Props> = ({
   };
 
   return (
-    <ToggleWrapper display={display} gap={gap}>
+    <ToggleWrapper
+      as={motion.div}
+      display={display}
+      drag={isOutOfContainer ? "x" : undefined}
+      dragConstraints={{left: -90, right: 0}}
+      dragElastic={0.2}
+      gap={gap}
+    >
       {labels.map((label, index) => {
         return (
           <ButtonSelector
