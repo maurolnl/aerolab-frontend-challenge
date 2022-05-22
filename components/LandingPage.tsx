@@ -6,7 +6,6 @@ import Hero from "./Hero/Hero";
 import {Container} from "./layout/Container.styled";
 import {useMedia} from "./layout/hooks";
 import {Stack} from "./layout/Stack.styled";
-import Navbar from "./Navbar/Navbar";
 
 const EmptyDiv = styled.div`
   height: 128px;

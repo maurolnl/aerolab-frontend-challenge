@@ -26,21 +26,6 @@ const Wrapper = styled.article`
   border-color: ${Colors.Neutral[300]};
   border-radius: 32px;
 
-  /* @media ${device.desktop} {
-    ${(p) => {
-    switch (p.id) {
-      case "1":
-        return `
-          transform: translate(80px, 35px) rotate(-3deg);
-        `;
-      case "3":
-        return `
-          transform: translate(-80px, 35px) rotate(3deg);
-    `;
-    }
-  }}
-  } */
-
   @media ${device.desktop} {
     width: 532px;
     height: 676px;
