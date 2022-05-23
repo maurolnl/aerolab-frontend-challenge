@@ -18,6 +18,10 @@ const Content = styled.div`
   align-items: center;
 `;
 
+const ImageWrapper = styled.div`
+  cursor: pointer;
+`;
+
 const Navbar = () => {
   const [isScrolled, setScrolled] = useState<boolean>(false);
   const {scrollY} = useViewportScroll();
@@ -41,13 +45,16 @@ const Navbar = () => {
       <Container>
         <Content>
           <ClientOnly>
-            <Image
-              alt="aerolab-logo"
-              height={isDesktop ? 48 : 36}
-              objectFit="cover"
-              src={isDesktop ? aerolab_logo.src : aerolab_logo_mobile.src}
-              width={isDesktop ? 126 : 38.7}
-            />
+            <ImageWrapper>
+              <Image
+                alt="aerolab-logo"
+                height={isDesktop ? 48 : 36}
+                objectFit="cover"
+                src={isDesktop ? aerolab_logo.src : aerolab_logo_mobile.src}
+                width={isDesktop ? 126 : 38.7}
+                onClick={() => window.scroll({top: 0, behavior: "smooth"})}
+              />
+            </ImageWrapper>
           </ClientOnly>
           <AeroCoins />
         </Content>
