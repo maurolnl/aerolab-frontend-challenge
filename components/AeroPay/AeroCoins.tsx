@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
-import aeropay_icon from "../assets/icons/aeropay-1.svg";
-import arrow from "../assets/icons/chevron-default.svg";
-import {Colors, Shadows, TextStyles} from "../styles/Theme";
+import aeropay_icon from "../../assets/icons/aeropay-1.svg";
+import arrow from "../../assets/icons/chevron-default.svg";
+import {Colors, Shadows, TextStyles} from "../../styles/Theme";
+import {DropdownIcon} from "../layout/DropdownIcon.styled";
+import {Icon} from "../layout/AeroPayIcon.styled";
+import {device} from "../media/media";
+import {useMedia} from "../layout/hooks";
+import {useUser} from "../User/context";
+import {formatCurrency} from "../utils";
 
-import {DropdownIcon} from "./layout/DropdownIcon.styled";
-import {Icon} from "./layout/AeroPayIcon.styled";
-import AeroPay from "./AeroPay/AeroPay";
-import {device} from "./media/media";
-import {useMedia} from "./layout/hooks";
-import {useUser} from "./User/context";
-import {formatCurrency} from "./utils";
+import AeroPay from "./AeroPay";
 
 const AeroCoinButton = styled.button`
   display: flex;
