@@ -1,7 +1,7 @@
 import Image, {StaticImageData} from "next/image";
 import React from "react";
 import styled from "styled-components";
-import {motion, Variants} from "framer-motion";
+import {AnimatePresence} from "framer-motion";
 
 import {Colors, Shadows} from "../../styles/Theme";
 import {Icon} from "../layout/Icon.styled";
@@ -25,6 +25,21 @@ const Wrapper = styled.article`
   border: 1px solid;
   border-color: ${Colors.Neutral[300]};
   border-radius: 32px;
+
+  @media ${device.desktop} {
+    ${(p) => {
+      switch (p.id) {
+        case "1":
+          return `
+          transform: translate(80px, 35px) rotate(-3deg);
+        `;
+        case "3":
+          return `
+          transform: translate(-80px, 35px) rotate(3deg);
+    `;
+      }
+    }}
+  }
 
   @media ${device.desktop} {
     width: 532px;
@@ -152,7 +167,6 @@ export interface ICard {
   titleIcon: string;
   description: string;
   descriptionMobile: string;
-  cardVariants: Variants;
 }
 const WalkthroughCard: React.FC<ICard> = ({
   id,
@@ -162,33 +176,34 @@ const WalkthroughCard: React.FC<ICard> = ({
   titleIcon,
   description,
   descriptionMobile,
-  cardVariants,
 }) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
 
   return (
-    <Wrapper as={motion.article} id={id} variants={isDesktop ? cardVariants : undefined}>
-      <Header>
-        <Image
-          alt={"Sally-31"}
-          layout="fill"
-          objectFit="cover"
-          src={isDesktop ? headerImage : headerImageMobile}
-        />
-        <HeaderBG />
-      </Header>
-      <CardBody>
-        <TitleWrapper>
-          <IconBG>
-            <Icon rotation="0deg" src={titleIcon} variant={isDesktop ? "Desktop" : "Mobile"} />
-          </IconBG>
-          <TitleL3 variant="gradient">{title}</TitleL3>
-        </TitleWrapper>
-        <TextWrapper>
-          <TextDefault>{isDesktop ? description : descriptionMobile}</TextDefault>
-        </TextWrapper>
-      </CardBody>
-    </Wrapper>
+    <AnimatePresence>
+      <Wrapper id={id}>
+        <Header>
+          <Image
+            alt={"Sally-31"}
+            layout="fill"
+            objectFit="cover"
+            src={isDesktop ? headerImage : headerImageMobile}
+          />
+          <HeaderBG />
+        </Header>
+        <CardBody>
+          <TitleWrapper>
+            <IconBG>
+              <Icon rotation="0deg" src={titleIcon} variant={isDesktop ? "Desktop" : "Mobile"} />
+            </IconBG>
+            <TitleL3 variant="gradient">{title}</TitleL3>
+          </TitleWrapper>
+          <TextWrapper>
+            <TextDefault>{isDesktop ? description : descriptionMobile}</TextDefault>
+          </TextWrapper>
+        </CardBody>
+      </Wrapper>
+    </AnimatePresence>
   );
 };
 
