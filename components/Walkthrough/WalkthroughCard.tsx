@@ -184,7 +184,7 @@ const WalkthroughCard: React.FC<ICard> = ({
       <Wrapper id={id}>
         <Header>
           <Image
-            alt={"Sally-31"}
+            alt={`walkthrough-${id}`}
             layout="fill"
             objectFit="cover"
             src={isDesktop ? headerImage : headerImageMobile}
