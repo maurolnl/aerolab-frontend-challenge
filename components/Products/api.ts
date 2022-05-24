@@ -19,7 +19,7 @@ export default {
       .then((response) => response.json())
       .catch((e) => e.message);
   },
-  redeemProduct: async (productId: string): Promise<{message: string}> => {
+  redeemProduct: async (productId: string): Promise<boolean> => {
     return fetch(`${PROD_URL}redeem`, {
       method: "POST",
       headers: {
@@ -29,7 +29,7 @@ export default {
       },
       body: JSON.stringify({productId: productId}),
     })
-      .then((response) => response.json())
-      .catch((e) => e.error);
+      .then(() => true)
+      .catch((e) => false);
   },
 };
