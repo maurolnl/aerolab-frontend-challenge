@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 
 import {PRODUCTS_CATEGORIES, SORT_TYPES} from "../../constants";
+import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {device} from "../media/media";
 
 import {useFilters} from "./context";
@@ -35,6 +36,13 @@ const Grid = styled.div`
   }
 `;
 
+const EmptyGrid = styled.div`
+  display: grid;
+  place-items: center;
+
+  min-height: 506px;
+`;
+
 interface Props {
   products: IProduct[];
 }
@@ -65,6 +73,14 @@ const Products: React.FC<Props> = ({products}) => {
     setFilteredProducts(newProducts);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
+
+  if (products.length === 0) {
+    return (
+      <EmptyGrid>
+        <TextDefault>There are no products available. Please, return later.</TextDefault>
+      </EmptyGrid>
+    );
+  }
 
   return (
     <Grid as={motion.div}>
