@@ -26,7 +26,7 @@ const HeaderWrapper = styled.header`
   }
 `;
 
-const SectionWrapper = styled.div`
+const SectionWrapper = styled.section`
   display: flex;
   flex-direction: column;
 
