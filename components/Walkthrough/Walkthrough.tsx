@@ -49,7 +49,7 @@ const card_source = [
   },
 ] as ICard[];
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   justify-content: center;
 
