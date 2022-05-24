@@ -162,6 +162,7 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
       </ProductCard>
       <ButtonCTA
         borderRadius="16px"
+        disabled={isDisabled}
         h="59px"
         variant={buttonVariant}
         w="100%"
