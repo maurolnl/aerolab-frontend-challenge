@@ -34,7 +34,11 @@ const Home: NextPage<Props> = ({products}) => {
   const productSectionRef = useRef<HTMLDivElement>(null);
 
   function handleScroll() {
-    if (productSectionRef.current) productSectionRef.current.scrollIntoView({behavior: "smooth"});
+    if (productSectionRef.current) {
+      const y = productSectionRef.current.getBoundingClientRect().top - 132;
+
+      window.scrollTo({top: y, behavior: "smooth"});
+    }
   }
 
   return (
@@ -78,7 +82,11 @@ const Home: NextPage<Props> = ({products}) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await api.getAllProducts();
+  let products = await api.getAllProducts();
+
+  if (!products) {
+    products = [];
+  }
 
   return {
     props: {
