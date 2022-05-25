@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {MOCK_URL, PROD_URL} from "../../constants";
 
 import {IProduct} from "./types";
@@ -7,7 +8,7 @@ export const products_endpoint =
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  getAllProducts: async (): Promise<IProduct[]> => {
+  getAllProducts: async (): Promise<IProduct[] | false> => {
     return fetch(`${PROD_URL}products`, {
       method: "GET",
       headers: {
@@ -17,7 +18,11 @@ export default {
       },
     })
       .then((response) => response.json())
-      .catch((e) => e.message);
+      .catch((e) => {
+        console.log(e);
+
+        return false;
+      });
   },
   redeemProduct: async (productId: string): Promise<boolean> => {
     return fetch(`${PROD_URL}redeem`, {
