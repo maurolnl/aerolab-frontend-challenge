@@ -8,15 +8,20 @@ import {SORT_TYPES} from "../../../constants";
 import {useFilters} from "../context";
 
 const Wrapper = styled.div`
-  display: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-  @media ${device.desktop} {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    gap: 16px;
+  gap: 16px;
+  @media ${device.mobile} {
+    display: none;
+  }
+  @media ${device.mobileS} {
+    display: none;
+  }
+  @media ${device.tablet} {
+    display: none;
   }
 `;
 
@@ -24,7 +29,7 @@ const Sort = () => {
   const {handleSortChange} = useFilters();
 
   return (
-    <Wrapper>
+    <Wrapper data-testid="sort">
       <TextDefault whiteSpace="nowrap">Sort by: </TextDefault>
       <ToggleGroup callback={handleSortChange} gap="12px" labels={SORT_TYPES} padding="8px 24px" />
     </Wrapper>
