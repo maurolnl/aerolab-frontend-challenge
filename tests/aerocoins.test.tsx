@@ -1,3 +1,6 @@
+import {fireEvent} from "@testing-library/react";
+import {act} from "react-dom/test-utils";
+
 import AeroCoins from "../components/AeroPay/AeroCoins";
 import {useUser} from "../components/User/context";
 import {formatCurrency} from "../components/utils";
@@ -23,7 +26,7 @@ describe(" [AeroCoins] ", () => {
     });
   });
   describe("when the user points are > than 0", () => {
-    beforeEach(() => {
+    beforeAll(() => {
       (useUser as any).mockReturnValue({
         user: {
           id: "1",
@@ -33,6 +36,7 @@ describe(" [AeroCoins] ", () => {
           createDate: "1",
         },
         error: undefined,
+        handleAddPoints: jest.fn(),
       });
     });
     it("should render the points formatted", () => {
@@ -44,6 +48,29 @@ describe(" [AeroCoins] ", () => {
       const CoinsText = AeroCoinsComponent.getByText(`${formattedCoins}`);
 
       expect(CoinsText).toBeVisible();
+    });
+    describe("when its clicked", () => {
+      it("should open #AeroPay and be able to add points", async () => {
+        (useUser as any).mockReturnValue({
+          handleAddPoints: jest.fn(),
+        });
+        const AeroCoinsComponent = render(<AeroCoins />);
+
+        const button = AeroCoinsComponent.getByRole("button");
+
+        fireEvent.click(button);
+
+        const aeropayButton = AeroCoinsComponent.getByRole("button", {name: /Add points/i});
+
+        await act(async () => {
+          fireEvent.click(aeropayButton);
+        });
+
+        const {handleAddPoints} = useUser();
+
+        expect(handleAddPoints).toHaveBeenCalledTimes(1);
+        expect(handleAddPoints).toHaveBeenCalledWith(5000);
+      });
     });
   });
   describe("when user context is loading", () => {
