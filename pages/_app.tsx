@@ -1,6 +1,9 @@
 import type {AppProps} from "next/app";
+import {DefaultSeo} from "next-seo";
 import styled from "styled-components";
+
 import "../styles/styles.css";
+import SEO from "../next-seo.config";
 
 const AppEl = styled.div`
   display: flex;
@@ -13,6 +16,7 @@ const AppEl = styled.div`
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <AppEl>
+      <DefaultSeo {...SEO} />
       <Component {...pageProps} />
     </AppEl>
   );

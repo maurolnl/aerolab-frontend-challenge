@@ -45,8 +45,6 @@ const Home: NextPage<Props> = ({products}) => {
     <ProvideUser>
       <GlobalStyle />
       <Head>
-        <title>Aerolab frontend challenge</title>
-        <meta content="Frontend challenge for aerolab job application" name="description" />
         <link href="/favicon.ico" rel="icon" />
         <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
         <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
