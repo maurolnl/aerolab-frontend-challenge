@@ -50,6 +50,7 @@ const Navbar = () => {
                 alt="aerolab-logo"
                 height={isDesktop ? 48 : 36}
                 objectFit="cover"
+                priority={true}
                 src={isDesktop ? aerolab_logo.src : aerolab_logo_mobile.src}
                 width={isDesktop ? 126 : 38.7}
                 onClick={() => window.scroll({top: 0, behavior: "smooth"})}
