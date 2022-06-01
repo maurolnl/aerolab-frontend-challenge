@@ -73,7 +73,7 @@ describe(" [AeroCoins] ", () => {
       });
     });
   });
-  describe("when user context is loading", () => {
+  describe("when user context is loading should render skeleton", () => {
     beforeEach(() => {
       (useUser as any).mockReturnValue({
         user: undefined,
@@ -83,7 +83,7 @@ describe(" [AeroCoins] ", () => {
     it("should return 0", () => {
       const AeroCoinsComponent = render(<AeroCoins />);
 
-      const CoinsText = AeroCoinsComponent.getByText("0");
+      const CoinsText = AeroCoinsComponent.getByTestId("aerocoins-skeleton");
 
       expect(CoinsText).toBeVisible();
     });

@@ -88,7 +88,13 @@ const AeroCoins = () => {
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
           <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
-          {!user ? <Skeleton /> : !error ? <p>{formatCurrency(user.points)}</p> : 0}
+          {error ? (
+            <p>0</p>
+          ) : user ? (
+            <p>{formatCurrency(user.points)}</p>
+          ) : (
+            <Skeleton data-testid="aerocoins-skeleton" />
+          )}
         </Wrapper>
         <DropdownIcon rotation={isOpen ? "90deg" : "-90deg"} src={arrow.src} variant={"Desktop"} />
       </AeroCoinButton>
