@@ -7,6 +7,10 @@ const nextConfig = {
   images: {
     domains: ["coding-challenge-api.aerolab.co"],
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: ["en"],
+  },
 };
 
 module.exports = nextConfig;

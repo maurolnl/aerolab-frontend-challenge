@@ -67,6 +67,7 @@ const Pager: React.FC<Props> = ({
   return (
     <Wrapper display={display}>
       <PagerButton
+        aria-label="Previous Page"
         isDisabled={isDisableLeft}
         onClick={() => {
           if (handleScroll) handleScroll();
@@ -87,6 +88,7 @@ const Pager: React.FC<Props> = ({
         </TextDefault>
       </p>
       <PagerButton
+        aria-label="Previous Page"
         isDisabled={isDisabledRight}
         onClick={() => {
           if (handleScroll) handleScroll();

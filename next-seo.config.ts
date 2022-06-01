@@ -1,5 +1,5 @@
 const title = "Aerolab Frontend Challenge";
-const description = "Frontend challenge for aerolab job application";
+const description = "Frontend challenge for Aerolab job application";
 
 const SEO = {
   title,
