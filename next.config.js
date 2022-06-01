@@ -8,8 +8,8 @@ const nextConfig = {
     domains: ["coding-challenge-api.aerolab.co"],
   },
   i18n: {
-    locales: ["en"],
-    defaultLocale: ["en"],
+    locales: ["en-US"],
+    defaultLocale: "en-US",
   },
 };
 
