@@ -57,6 +57,23 @@ const PaymentBox = styled.div`
   z-index: 10;
 `;
 
+const Skeleton = styled.p`
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+
+  height: 25px;
+  width: 70px;
+
+  @keyframes shine {
+    to {
+      background-position-x: -200%;
+    }
+  }
+`;
+
 const AeroCoins = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
@@ -71,7 +88,7 @@ const AeroCoins = () => {
       <AeroCoinButton onClick={() => setOpen(!isOpen)}>
         <Wrapper>
           <Icon src={aeropay_icon.src} variant={isDesktop ? "Desktop" : "Mobile"} />
-          <p>{user ? formatCurrency(user.points) : error ? 0 : 0}</p>
+          {!user ? <Skeleton /> : !error ? <p>{formatCurrency(user.points)}</p> : 0}
         </Wrapper>
         <DropdownIcon rotation={isOpen ? "90deg" : "-90deg"} src={arrow.src} variant={"Desktop"} />
       </AeroCoinButton>
