@@ -1,6 +1,6 @@
 import type {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Toaster} from "react-hot-toast";
 import styled from "styled-components";
 
@@ -32,10 +32,14 @@ interface Props {
 const Home: NextPage<Props> = ({products}) => {
   const isDesktop = useMedia(["(min-width: 1470px)"], [true]);
   const productSectionRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
 
   function handleScroll() {
-    if (productSectionRef.current) {
-      const y = productSectionRef.current.getBoundingClientRect().top - 132;
+    if (productSectionRef.current && pageRef.current) {
+      const productTop = productSectionRef.current.getBoundingClientRect().top;
+      const containerTop = pageRef.current.getBoundingClientRect().top;
+
+      const y = productTop + Math.abs(containerTop) - 132;
 
       window.scrollTo({top: y, behavior: "smooth"});
     }
@@ -65,7 +69,7 @@ const Home: NextPage<Props> = ({products}) => {
         <NavbarWrapper>
           <Navbar />
         </NavbarWrapper>
-        <Stack direction="column" gap={isDesktop ? "135px" : "19px"} zindex="0">
+        <Stack ref={pageRef} direction="column" gap={isDesktop ? "135px" : "19px"} zindex="0">
           <LandingPage handleScroll={handleScroll} />
           <Stack direction="column" gap="160px">
             <Walkthrough />
