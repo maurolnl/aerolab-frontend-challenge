@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {mutate} from "swr";
 import {motion} from "framer-motion";
 
+import loading_logo from "../../assets/illustrations/loading_logo.png";
 import aeropay_icon from "../../assets/icons/aeropay-3.svg";
 import {Colors, Shadows} from "../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
@@ -69,14 +70,30 @@ const ProductDetail = styled.div`
   border-radius: 0px 0px 16px 16px;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<{display?: string}>`
   position: relative;
+  display: ${(p) => (p.display ? p.display : "")};
+`;
+
+const ImagePlaceHolder = styled.div`
+  position: absolute;
+
+  width: 78px;
+  height: 72px;
+
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `;
 
 const Center = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: relative;
 
   width: 100%;
   height: 100%;
@@ -96,6 +113,7 @@ interface Props {
 
 const Product: React.FC<Props> = ({productId, name, category, images, price}) => {
   const [isProcessing, setProcessing] = useState<boolean>(false);
+  const [isLoadingImage, setLoadingImage] = useState<boolean>(true);
   const [isDisabled, setDisabled] = useState<boolean>(false);
   const isMobileS = useMedia(["(max-width: 620px)"], [true]);
   const {user} = useUser();
@@ -144,6 +162,17 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
     >
       <ProductCard>
         <Center>
+          {isLoadingImage && (
+            <ImagePlaceHolder>
+              <Image
+                alt={"loading image"}
+                height={72}
+                objectFit={"cover"}
+                src={loading_logo.src}
+                width={78}
+              />
+            </ImagePlaceHolder>
+          )}
           <ImageWrapper>
             <Image
               alt={"product image"}
@@ -152,6 +181,7 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
               objectFit={"cover"}
               src={isMobileS ? images.url : images.hdUrl}
               width={280}
+              onLoadingComplete={() => setLoadingImage(false)}
             />
           </ImageWrapper>
         </Center>
