@@ -150,7 +150,7 @@ const Product: React.FC<Props> = ({productId, name, category, images, price}) =>
               height={204}
               loading="lazy"
               objectFit={"cover"}
-              src={images.hdUrl}
+              src={isMobileS ? images.url : images.hdUrl}
               width={280}
             />
           </ImageWrapper>
