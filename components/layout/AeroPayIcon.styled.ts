@@ -7,6 +7,7 @@ interface Props {
   variant: string;
   valign?: string;
   isDisabled?: string;
+  $isAeroCard?: boolean;
 }
 
 export const Icon = styled(SVG)<Props>`
@@ -19,6 +20,15 @@ export const Icon = styled(SVG)<Props>`
   > rect {
     fill: ${(p) => (p.isDisabled ? Colors.Neutral[500] : "")};
   }
+
+  ${(p) =>
+    p.$isAeroCard
+      ? `
+    &:hover > path {
+      stroke: ${Colors.Neutral[600]};
+    }
+    `
+      : ""}
 
   //Since aerocoins use this icon but its size on mobile small screens is still 24 x 24
   ${(p) => {

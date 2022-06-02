@@ -9,7 +9,6 @@ import {ButtonCTA} from "../layout/Button/ButtonCTA.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import aeropay_3 from "../../assets/icons/aeropay-3.svg";
 import close_icon from "../../assets/icons/cross-default.svg";
-import close_icon_active from "../../assets/icons/cross-active.svg";
 import ToggleGroup from "../layout/ToggleGroup";
 import {useUser} from "../User/context";
 import {ErrorToast, SuccessToast} from "../Toast/Toast";
@@ -60,7 +59,6 @@ interface Props {
 }
 
 const AeroPay: React.FC<Props> = ({onClose, isOpen}) => {
-  const [isActive, setActive] = useState<boolean>(false);
   const [activeButton, setActiveButton] = useState<number>(1);
   const [isLoading, setLoading] = useState<boolean>(false);
   const isMobileS = useMedia(["(max-width: 620px)"], [true]);
@@ -102,12 +100,7 @@ const AeroPay: React.FC<Props> = ({onClose, isOpen}) => {
           <Header>
             <TextDefault color={"900"}>Add Balance</TextDefault>
             <ButtonClose onClick={onClose}>
-              <Icon
-                src={isActive ? close_icon_active.src : close_icon.src}
-                variant="Mobile"
-                onMouseEnter={() => setActive(true)}
-                onMouseLeave={() => setActive(false)}
-              />
+              <Icon $isAeroCard={true} src={close_icon.src} variant="Mobile" />
             </ButtonClose>
           </Header>
           <Content>
