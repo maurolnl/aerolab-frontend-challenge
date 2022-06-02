@@ -6,7 +6,6 @@ import success_icon from "../../assets/icons/system-success.svg";
 import error_icon from "../../assets/icons/system-error.svg";
 import {Colors, Shadows, TextStyles} from "../../styles/Theme";
 import {Icon} from "../layout/AeroPayIcon.styled";
-import {useMedia} from "../layout/hooks";
 import {Stack} from "../layout/Stack.styled";
 import {TextDefault} from "../layout/Text/TextDefault.styled";
 import {ButtonClose} from "../layout/Button/ButtonClose.styled";

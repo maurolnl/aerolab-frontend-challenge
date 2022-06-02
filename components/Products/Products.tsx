@@ -1,5 +1,5 @@
 import {AnimatePresence, motion} from "framer-motion";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 import {PRODUCTS_CATEGORIES, SORT_TYPES} from "../../constants";

@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 
 import {Colors} from "../../../styles/Theme";
 import {PagerIcon} from "../../layout/PagerIcon.styled";
 import arrow from "../../../assets/icons/chevron-default.svg";
 import {TextDefault} from "../../layout/Text/TextDefault.styled";
-import {useFilters} from "../context";
 
 const Wrapper = styled.div<{display?: string}>`
   display: flex;
